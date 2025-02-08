@@ -1,3 +1,9 @@
+###> vinylexplore/local-development ###
+.DS_Store
+.idea/
+vinylexplorenew.crt
+vinylexplorenew.key
+###< vinylexplore/local-development ###
 
 ###> symfony/framework-bundle ###
 /.env.local
