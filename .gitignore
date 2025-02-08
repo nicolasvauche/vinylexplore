@@ -3,6 +3,8 @@
 .idea/
 vinylexplorenew.crt
 vinylexplorenew.key
+public/uploads/album/*
+!public/uploads/album/.gitkeep
 ###< vinylexplore/local-development ###
 
 ###> symfony/framework-bundle ###
