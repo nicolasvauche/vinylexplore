@@ -1,0 +1,11 @@
+.form-checkbox {
+  display: block;
+  margin: -1rem 0 2rem;
+  padding: 0 0.25rem;
+  font-size: 0.75rem;
+
+  input[type="checkbox"] {
+    -webkit-appearance: checkbox;
+    vertical-align: middle;
+  }
+}

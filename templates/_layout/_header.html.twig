@@ -1,11 +1,15 @@
 <header class="app-header">
     <div class="app-settings">
-        <a href="#" class="profile" title="Mon Compte">
-            {{ ux_icon('mdi:user', {'class': 'app-icon'}) }}
-        </a>
-        <a href="#" class="mood" title="Mon Humeur">
-            {{ ux_icon('subway:random', {'class': 'app-icon'}) }}
-        </a>
+        {% if app.user %}
+            <a href="{{ path('app_profile') }}" class="profile {% if app.request.get('_route') == 'app_profile' %}active{% endif %}" title="Mon Compte">
+                {{ ux_icon('mdi:user', {'class': 'app-icon'}) }}
+            </a>
+            <a href="#" class="mood" title="Mon Humeur">
+                {{ ux_icon('subway:random', {'class': 'app-icon'}) }}
+            </a>
+        {% else %}
+            &nbsp;
+        {% endif %}
     </div>
 
     <nav class="app-navigation">
@@ -23,9 +27,11 @@
         </a>
     </nav>
 
-    <div class="app-logout">
-        <a href="#" class="logout" title="Déconnexion" onclick="return window.confirm('Vous partez ?')">
-            {{ ux_icon('mdi:logout', {'class': 'app-icon'}) }}
-        </a>
-    </div>
+    {% if app.user %}
+        <div class="app-logout">
+            <a href="{{ path('app_logout') }}" class="logout" title="Déconnexion" onclick="return window.confirm('Vous partez ?')">
+                {{ ux_icon('mdi:logout', {'class': 'app-icon'}) }}
+            </a>
+        </div>
+    {% endif %}
 </header>

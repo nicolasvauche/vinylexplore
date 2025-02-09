@@ -1,0 +1,30 @@
+.app-alert {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  padding: 1.25rem 0.5rem;
+  font-weight: bold;
+  text-align: center;
+
+  &.danger {
+    color: $white;
+    background-color: $danger;
+  }
+
+  &.warning {
+    color: $white;
+    background-color: $warning;
+  }
+
+  &.info {
+    color: $white;
+    background-color: $info;
+  }
+
+  &.success {
+    color: $white;
+    background-color: $success;
+  }
+}

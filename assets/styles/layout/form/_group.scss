@@ -1,0 +1,57 @@
+.form-group {
+  margin-bottom: 3rem;
+
+  .control {
+    position: relative;
+    padding: 0.5rem;
+    border: 2px solid $primary;
+    border-radius: 0.5rem;
+  }
+
+  border-radius: 0.5rem;
+
+  .form-label {
+    position: absolute;
+    top: -0.75rem;
+    left: 1rem;
+    padding: 0 0.5rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: $primary;
+    background-color: $white;
+
+    &.required {
+      &:after {
+        content: " *";
+        color: $danger;
+      }
+    }
+  }
+
+  .form-control {
+    box-sizing: border-box;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    font-family: $font-primary;
+    font-size: 1rem;
+    border: none;
+    background-color: transparent;
+    outline: none;
+  }
+
+  .help-text {
+    margin-right: 0.5rem;
+    font-size: 0.75rem;
+    font-style: italic;
+    text-align: right;
+  }
+
+  ul {
+    margin-right: 0.5rem;
+    text-align: right;
+    font-size: 0.75rem;
+    font-style: italic;
+    color: $danger
+  }
+}

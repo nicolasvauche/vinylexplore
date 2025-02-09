@@ -1,0 +1,45 @@
+{% extends '_layout/_index.html.twig' %}
+
+{% block title %}Votre Compte{% endblock %}
+
+{% block body_class %}form profile{% endblock %}
+
+{% block main %}
+    <section class="app-section">
+        <h1>Votre Compte</h1>
+
+        {{ form_start(form, {'attr': {'class': 'app-form'}}) }}
+        <fieldset class="form-fieldset">
+            <div class="form-group">
+                <div class="control">
+                    {{ form_label(form.name) }}
+                    {{ form_widget(form.name) }}
+                </div>
+                {{ form_help(form.name) }}
+                {{ form_errors(form.name) }}
+            </div>
+
+            <div class="form-group">
+                <div class="control">
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email) }}
+                </div>
+                {{ form_help(form.email) }}
+                {{ form_errors(form.email) }}
+            </div>
+
+            <div class="form-group">
+                <div class="control">
+                    {{ form_label(form.plainPassword) }}
+                    {{ form_widget(form.plainPassword) }}
+                </div>
+                {{ form_help(form.plainPassword) }}
+                {{ form_errors(form.plainPassword) }}
+            </div>
+
+            {{ form_widget(form._token) }}
+            <button class="app-button cta" type="submit">Modifier</button>
+        </fieldset>
+        {{ form_end(form) }}
+    </section>
+{% endblock %}

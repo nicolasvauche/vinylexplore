@@ -1,0 +1,29 @@
+.app-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  font-family: $font-primary;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  color: $primary;
+  border: 1px solid $primary;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  cursor: pointer;
+
+  &.cta {
+    font-size: 1.25rem;
+    color: $black;
+    border-color: $secondary;
+    background-color: $secondary;
+    box-shadow: 1px 1px 2px rgba($black, 0.5);
+
+    &:active {
+      box-shadow: inset 1px 1px 2px rgba($black, 0.5);
+    }
+  }
+}

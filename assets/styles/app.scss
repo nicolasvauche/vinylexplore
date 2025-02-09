@@ -1,3 +1,4 @@
 @import "utils/variables", "utils/mixins";
-@import "base/reset";
-@import "layout";
+@import "base/reset", "base/typography";
+@import "layout", "layout/form";
+@import "components/button", "components/alert";
