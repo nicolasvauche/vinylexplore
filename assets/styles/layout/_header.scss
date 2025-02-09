@@ -1,0 +1,32 @@
+.app-header {
+  @include displayGrid(3rem 1fr 3rem);
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding: 0.5rem 0.5rem 0;
+  width: 100%;
+
+  a,
+  span {
+    @include displayFlex(center, center, null, column);
+    font-size: 0.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: $primary;
+
+    &.active {
+      border-bottom: 0.25rem solid $secondary;
+    }
+
+    .app-icon {
+      height: 2rem;
+    }
+
+    img {
+      height: 2rem;
+    }
+  }
+
+  @import "../components/header/settings";
+  @import "../components/header/navigation";
+  @import "../components/header/logout";
+}

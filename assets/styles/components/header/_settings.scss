@@ -1,0 +1,11 @@
+.app-settings {
+  @include displayFlex(center, flex-start, 0.25rem);
+
+  .mood {
+    color: $third;
+
+    .app-icon {
+      height: 1.25rem;
+    }
+  }
+}

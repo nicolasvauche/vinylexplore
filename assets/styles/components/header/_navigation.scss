@@ -1,0 +1,12 @@
+.app-navigation {
+  @include displayFlex(center, flex-start, 1rem);
+
+  .logo {
+    font-size: 0.75rem;
+    text-transform: none;
+
+    img {
+      height: 3.5rem;
+    }
+  }
+}

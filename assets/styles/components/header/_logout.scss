@@ -1,0 +1,7 @@
+.app-logout {
+  @include displayFlex(center, flex-start, 0.25rem);
+
+  .logout {
+    color: $danger;
+  }
+}

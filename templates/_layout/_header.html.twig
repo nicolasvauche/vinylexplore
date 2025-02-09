@@ -1,0 +1,31 @@
+<header class="app-header">
+    <div class="app-settings">
+        <a href="#" class="profile" title="Mon Compte">
+            {{ ux_icon('mdi:user', {'class': 'app-icon'}) }}
+        </a>
+        <a href="#" class="mood" title="Mon Humeur">
+            {{ ux_icon('subway:random', {'class': 'app-icon'}) }}
+        </a>
+    </div>
+
+    <nav class="app-navigation">
+        <a href="{{ path('app_match_home') }}" class="match {% if 'app_match_' in app.request.get('_route') %}active{% endif %}" title="VinyleMatch">
+            <img src="{{ asset('img/logo_vinylematch.png') }}" alt="Logo VinyleMatch"/>
+            Match
+        </a>
+        <span class="logo">
+            <img src="{{ asset('img/logo.png') }}" alt="Logo VinyleXplore"/>
+            VinyleXplore
+        </span>
+        <a href="{{ path('app_hub_home') }}" class="hub {% if 'app_hub_' in app.request.get('_route') %}active{% endif %}" title="VinyleHub">
+            <img src="{{ asset('img/logo_vinylehub.png') }}" alt="Logo VinyleHub"/>
+            Hub
+        </a>
+    </nav>
+
+    <div class="app-logout">
+        <a href="#" class="logout" title="Déconnexion" onclick="return window.confirm('Vous partez ?')">
+            {{ ux_icon('mdi:logout', {'class': 'app-icon'}) }}
+        </a>
+    </div>
+</header>

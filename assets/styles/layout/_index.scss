@@ -1,0 +1,37 @@
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: $white;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $secondary;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $secondary;
+}
+
+html {
+  scroll-behavior: smooth;
+
+  .turbo-progress-bar {
+    height: 0.5rem;
+    background-color: $secondary;
+    border-bottom-right-radius: 0.25rem;
+  }
+
+  body {
+    overflow: hidden;
+    @include displayFlex(space-between, center, null, column);
+    height: 100dvh;
+    font-family: $font-primary;
+    font-size: 1rem;
+    color: $black;
+    background-color: $white;
+
+    @import "./header";
+  }
+}
