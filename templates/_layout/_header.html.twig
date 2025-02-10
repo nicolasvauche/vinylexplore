@@ -4,7 +4,7 @@
             <a href="{{ path('app_profile') }}" class="profile {% if app.request.get('_route') == 'app_profile' %}active{% endif %}" title="Mon Compte">
                 {{ ux_icon('mdi:user', {'class': 'app-icon'}) }}
             </a>
-            <a href="#" class="mood" title="Mon Humeur">
+            <a href="{{ path('app_match_settings') }}" class="mood {% if app.request.get('_route') == 'app_match_settings' %}active{% endif %}" title="Mon Humeur">
                 {{ ux_icon('subway:random', {'class': 'app-icon'}) }}
             </a>
         {% else %}
