@@ -6,4 +6,38 @@
             {{ ux_icon('mdi:multiply-bold', {'class': 'app-icon'}) }}
         </button>
     </div>
+
+    <div class="filter-group">
+        <label for="album">Album</label>
+        <input type="text" name="album" id="album" data-model="album"/>
+        <button class="reset" {{ live_action('resetFilters', {filter: 'album'}) }}>
+            {{ ux_icon('mdi:multiply-bold', {'class': 'app-icon'}) }}
+        </button>
+    </div>
+
+    <div class="app-grid two">
+        <div class="filter-group">
+            <label for="genre">Genre</label>
+            <input type="text" name="genre" id="genre" data-model="genre"/>
+            <button class="reset" {{ live_action('resetFilters', {filter: 'genre'}) }}>
+                {{ ux_icon('mdi:multiply-bold', {'class': 'app-icon'}) }}
+            </button>
+        </div>
+
+        <div class="filter-group">
+            <label for="style">Style</label>
+            <input type="text" name="style" id="year" data-model="style"/>
+            <button class="reset" {{ live_action('resetFilters', {filter: 'style'}) }}>
+                {{ ux_icon('mdi:multiply-bold', {'class': 'app-icon'}) }}
+            </button>
+        </div>
+    </div>
+
+    <div class="filter-group">
+        <label for="year">Année</label>
+        <input type="text" name="year" id="year" data-model="year"/>
+        <button class="reset" {{ live_action('resetFilters', {filter: 'year'}) }}>
+            {{ ux_icon('mdi:multiply-bold', {'class': 'app-icon'}) }}
+        </button>
+    </div>
 </div>

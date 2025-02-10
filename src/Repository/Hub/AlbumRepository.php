@@ -30,6 +30,30 @@ class AlbumRepository extends ServiceEntityRepository
                 ->addOrderBy('artist.name', 'ASC');
         }
 
+        if(isset($filters['album'])) {
+            $qb->andWhere('LOWER(album.title) LIKE :album')
+                ->setParameter('album', '%' . strtolower($filters['album']) . '%');
+        }
+
+        if(isset($filters['year'])) {
+            $qb->andWhere('album.year = :year')
+                ->setParameter('year', $filters['year']);
+        }
+
+        if(isset($filters['genre'])) {
+            $qb->join('album.genre', 'genre')
+                ->andWhere('LOWER(genre.name) LIKE :genre')
+                ->setParameter('genre', '%' . strtolower($filters['genre']) . '%')
+                ->addOrderBy('genre.name', 'ASC');
+        }
+
+        if(isset($filters['style'])) {
+            $qb->join('album.style', 'style')
+                ->andWhere('LOWER(style.name) LIKE :style')
+                ->setParameter('style', '%' . strtolower($filters['style']) . '%')
+                ->addOrderBy('style.name', 'ASC');
+        }
+
         $qb->addOrderBy('album.year', 'ASC');
 
         return $qb->getQuery()->getResult();

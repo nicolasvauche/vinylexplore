@@ -13,8 +13,20 @@
     display: block;
   }
 
+  .app-grid {
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .filter-group {
+      margin-bottom: 0;
+    }
+  }
+
   .filter-group {
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     position: relative;
     padding: 0.25rem;
     border: 1px solid $primary;

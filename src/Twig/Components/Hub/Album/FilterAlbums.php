@@ -19,10 +19,19 @@ class FilterAlbums
     private ?User $user = null;
 
     #[LiveProp(writable: true)]
-    public ?int $userId = null;
+    public ?string $artist = null;
 
     #[LiveProp(writable: true)]
-    public ?string $artist = null;
+    public ?string $album = null;
+
+    #[LiveProp(writable: true)]
+    public ?string $year = null;
+
+    #[LiveProp(writable: true)]
+    public ?string $genre = null;
+
+    #[LiveProp(writable: true)]
+    public ?string $style = null;
 
     public function __construct(private EntityManagerInterface $entityManager,
                                 private AlbumService           $albumService)
@@ -45,6 +54,22 @@ class FilterAlbums
             $filters['artist'] = $this->artist;
         }
 
+        if($this->album && strlen($this->album) > 2) {
+            $filters['album'] = $this->album;
+        }
+
+        if($this->year && strlen($this->year) === 4) {
+            $filters['year'] = $this->year;
+        }
+
+        if($this->genre && strlen($this->genre) > 2) {
+            $filters['genre'] = $this->genre;
+        }
+
+        if($this->style && strlen($this->style) > 2) {
+            $filters['style'] = $this->style;
+        }
+
         return $this->albumService->getUserAlbums($this->getUser($userId), $filters);
     }
 
@@ -54,6 +79,18 @@ class FilterAlbums
         switch($filter) {
             case 'artist':
                 $this->artist = null;
+                break;
+            case 'album':
+                $this->album = null;
+                break;
+            case 'year':
+                $this->year = null;
+                break;
+            case 'genre':
+                $this->genre = null;
+                break;
+            case 'style':
+                $this->style = null;
                 break;
             default:
                 break;

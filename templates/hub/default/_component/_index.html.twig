@@ -6,7 +6,7 @@
             <a href="{{ path('app_hub_search') }}" class="search" title="Recherche avancée">
                 {{ ux_icon('mdi:magnify', {'class': 'app-icon'}) }}
             </a>
-            <a href="#" class="filter {% if this.artist > 0 %}filtered{% endif %}" title="Filtrer" data-controller="filter" data-action="click->filter#toggle">
+            <a href="#" class="filter {% if this.artist or this.album or this.year or this.genre or this.style %}filtered{% endif %}" title="Filtrer" data-controller="filter" data-action="click->filter#toggle">
                 {{ ux_icon('mdi:filter', {'class': 'app-icon'}) }}
             </a>
         </div>
