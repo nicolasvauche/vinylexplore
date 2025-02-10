@@ -1,3 +1,9 @@
 <div class="app-filters">
-
+    <div class="filter-group">
+        <label for="artist">Artiste</label>
+        <input type="text" name="artist" id="artist" data-model="artist"/>
+        <button class="reset" {{ live_action('resetFilters', {filter: 'artist'}) }}>
+            {{ ux_icon('mdi:multiply-bold', {'class': 'app-icon'}) }}
+        </button>
+    </div>
 </div>

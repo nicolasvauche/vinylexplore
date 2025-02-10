@@ -1,4 +1,5 @@
 .app-section {
+  position: relative;
   @include displayFlex(center, center, null, column);
   box-sizing: border-box;
   padding: 1rem;

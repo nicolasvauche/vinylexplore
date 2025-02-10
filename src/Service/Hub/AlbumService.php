@@ -12,8 +12,8 @@ class AlbumService
         $this->albumRepository = $albumRepository;
     }
 
-    public function getUserAlbums(User $user): array
+    public function getUserAlbums(User $user, array $filters = []): array
     {
-        return $this->albumRepository->findBy(['owner' => $user]);
+        return $this->albumRepository->findUserAlbumsByFilters($user, $filters);
     }
 }

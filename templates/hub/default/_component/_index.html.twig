@@ -1,7 +1,33 @@
-<div {{ attributes }}>
+<div class="app-component" {{ attributes }}>
     {% set albums = this.albums(app.user.id) %}
 
-    {% include ('hub/default/_component/_filters.html.twig') %}
-    {% include ('hub/default/_component/_grid.html.twig') %}
-    {% include ('hub/default/_component/_pagination.html.twig') %}
+    <header class="app-controls">
+        <div class="app-search">
+            <a href="{{ path('app_hub_search') }}" class="search" title="Recherche avancée">
+                {{ ux_icon('mdi:magnify', {'class': 'app-icon'}) }}
+            </a>
+            <a href="#" class="filter {% if this.artist > 0 %}filtered{% endif %}" title="Filtrer" data-controller="filter" data-action="click->filter#toggle">
+                {{ ux_icon('mdi:filter', {'class': 'app-icon'}) }}
+            </a>
+        </div>
+
+        <h1 class="app-pagetitle">
+            Votre Collection ({{ app_albumService.userAlbums(app.user) | length }})
+        </h1>
+
+        <div class="app-manage">
+            <a href="#" class="playlists" title="Gestion des Playlists">
+                {{ ux_icon('mdi:playlist-music-outline', {'class': 'app-icon'}) }}
+            </a>
+            <a href="#" class="add" title="Nouvel Album">
+                {{ ux_icon('mdi:disc', {'class': 'app-icon'}) }}
+            </a>
+        </div>
+    </header>
+
+    <section class="app-section">
+        {% include ('hub/default/_component/_filters.html.twig') %}
+        {% include ('hub/default/_component/_grid.html.twig') %}
+        {% include ('hub/default/_component/_pagination.html.twig') %}
+    </section>
 </div>

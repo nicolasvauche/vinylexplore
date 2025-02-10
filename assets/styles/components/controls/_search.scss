@@ -1,3 +1,12 @@
 .app-search {
   @include displayFlex(center, center, 0.25rem);
+
+  .filter {
+    transition: all 0.3s;
+
+    &.active,
+    &.filtered {
+      border-color: $secondary;
+    }
+  }
 }

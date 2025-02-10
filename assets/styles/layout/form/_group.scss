@@ -1,6 +1,10 @@
 .form-group {
   margin-bottom: 3rem;
 
+  &:last-child {
+    margin-bottom: 0;
+  }
+
   .control {
     position: relative;
     padding: 0.5rem;

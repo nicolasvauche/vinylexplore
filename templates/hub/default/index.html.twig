@@ -4,10 +4,6 @@
 
 {% block body_class %}hub grid{% endblock %}
 
-{% set page_title = 'Votre Collection (' ~ app_albumService.userAlbums(app.user) | length ~ ')' %}
-
 {% block main %}
-    <section class="app-section">
         {{ component('FilterAlbums') }}
-    </section>
 {% endblock %}

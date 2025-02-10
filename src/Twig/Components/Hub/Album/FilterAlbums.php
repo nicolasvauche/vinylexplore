@@ -16,6 +16,14 @@ class FilterAlbums
 {
     use DefaultActionTrait;
 
+    private ?User $user = null;
+
+    #[LiveProp(writable: true)]
+    public ?int $userId = null;
+
+    #[LiveProp(writable: true)]
+    public ?string $artist = null;
+
     public function __construct(private EntityManagerInterface $entityManager,
                                 private AlbumService           $albumService)
     {
@@ -23,15 +31,32 @@ class FilterAlbums
         $this->albumService = $albumService;
     }
 
-    #[LiveAction]
-    public function getAlbums(#[LiveArg] int $userId): array
+    private function getUser(int $userId): User
     {
-        return $this->albumService->getUserAlbums($this->entityManager->getRepository(User::class)->find($userId));
+        return $this->entityManager->getRepository(User::class)->find($userId);
     }
 
     #[LiveAction]
-    public function resetFilters(): void
+    public function getAlbums(#[LiveArg] int $userId): array
     {
+        $filters = [];
 
+        if($this->artist && strlen($this->artist) > 2) {
+            $filters['artist'] = $this->artist;
+        }
+
+        return $this->albumService->getUserAlbums($this->getUser($userId), $filters);
+    }
+
+    #[LiveAction]
+    public function resetFilters(#[LiveArg] string $filter): void
+    {
+        switch($filter) {
+            case 'artist':
+                $this->artist = null;
+                break;
+            default:
+                break;
+        }
     }
 }
