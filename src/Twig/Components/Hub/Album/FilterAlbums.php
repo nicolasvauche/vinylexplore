@@ -25,13 +25,16 @@ class FilterAlbums
     public ?string $album = null;
 
     #[LiveProp(writable: true)]
-    public ?string $year = null;
-
-    #[LiveProp(writable: true)]
     public ?string $genre = null;
 
     #[LiveProp(writable: true)]
     public ?string $style = null;
+
+    #[LiveProp(writable: true)]
+    public ?string $year = null;
+
+    #[LiveProp(writable: true)]
+    public ?string $country = null;
 
     public function __construct(private EntityManagerInterface $entityManager,
                                 private AlbumService           $albumService)
@@ -58,16 +61,20 @@ class FilterAlbums
             $filters['album'] = $this->album;
         }
 
-        if($this->year && strlen($this->year) === 4) {
-            $filters['year'] = $this->year;
-        }
-
         if($this->genre && strlen($this->genre) > 2) {
             $filters['genre'] = $this->genre;
         }
 
         if($this->style && strlen($this->style) > 2) {
             $filters['style'] = $this->style;
+        }
+
+        if($this->year && strlen($this->year) === 4) {
+            $filters['year'] = $this->year;
+        }
+
+        if($this->country && strlen($this->country) > 1) {
+            $filters['country'] = $this->country;
         }
 
         return $this->albumService->getUserAlbums($this->getUser($userId), $filters);
@@ -83,14 +90,17 @@ class FilterAlbums
             case 'album':
                 $this->album = null;
                 break;
-            case 'year':
-                $this->year = null;
-                break;
             case 'genre':
                 $this->genre = null;
                 break;
             case 'style':
                 $this->style = null;
+                break;
+            case 'year':
+                $this->year = null;
+                break;
+            case 'country':
+                $this->country = null;
                 break;
             default:
                 break;

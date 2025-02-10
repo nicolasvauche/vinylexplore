@@ -35,11 +35,6 @@ class AlbumRepository extends ServiceEntityRepository
                 ->setParameter('album', '%' . strtolower($filters['album']) . '%');
         }
 
-        if(isset($filters['year'])) {
-            $qb->andWhere('album.year = :year')
-                ->setParameter('year', $filters['year']);
-        }
-
         if(isset($filters['genre'])) {
             $qb->join('album.genre', 'genre')
                 ->andWhere('LOWER(genre.name) LIKE :genre')
@@ -52,6 +47,19 @@ class AlbumRepository extends ServiceEntityRepository
                 ->andWhere('LOWER(style.name) LIKE :style')
                 ->setParameter('style', '%' . strtolower($filters['style']) . '%')
                 ->addOrderBy('style.name', 'ASC');
+        }
+
+        if(isset($filters['year'])) {
+            $qb->andWhere('album.year = :year')
+                ->setParameter('year', $filters['year']);
+        }
+
+        if(isset($filters['country'])) {
+            $qb->join('album.artist', 'artist')
+                ->join('artist.country', 'country')
+                ->andWhere('LOWER(country.name) LIKE :country')
+                ->setParameter('country', '%' . strtolower($filters['country']) . '%')
+                ->addOrderBy('country.name', 'ASC');
         }
 
         $qb->addOrderBy('album.year', 'ASC');

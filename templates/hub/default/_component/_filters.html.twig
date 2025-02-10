@@ -33,11 +33,21 @@
         </div>
     </div>
 
-    <div class="filter-group">
-        <label for="year">Année</label>
-        <input type="text" name="year" id="year" data-model="year"/>
-        <button class="reset" {{ live_action('resetFilters', {filter: 'year'}) }}>
-            {{ ux_icon('mdi:multiply-bold', {'class': 'app-icon'}) }}
-        </button>
+    <div class="app-grid two">
+        <div class="filter-group">
+            <label for="year">Année</label>
+            <input type="text" name="year" id="year" data-model="year"/>
+            <button class="reset" {{ live_action('resetFilters', {filter: 'year'}) }}>
+                {{ ux_icon('mdi:multiply-bold', {'class': 'app-icon'}) }}
+            </button>
+        </div>
+
+        <div class="filter-group">
+            <label for="country">Pays</label>
+            <input type="text" name="country" id="country" data-model="country"/>
+            <button class="reset" {{ live_action('resetFilters', {filter: 'country'}) }}>
+                {{ ux_icon('mdi:multiply-bold', {'class': 'app-icon'}) }}
+            </button>
+        </div>
     </div>
 </div>
