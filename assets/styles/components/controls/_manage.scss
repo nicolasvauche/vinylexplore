@@ -1,0 +1,11 @@
+.app-manage {
+  @include displayFlex(center, center, 0.25rem);
+
+  .add {
+    color: $success;
+
+    .app-icon {
+      height: 2rem;
+    }
+  }
+}

@@ -1,8 +1,15 @@
 .app-main {
-  @include displayFlex(center, center, null, column);
+  @include displayFlex(space-between, center, null, column);
   margin-bottom: 1rem;
   width: 100%;
   flex: 1;
 
+  & > header {
+    box-sizing: border-box;
+    padding: 0.5rem;
+    width: 100%;
+  }
+
+  @import "./controls";
   @import "./section";
 }

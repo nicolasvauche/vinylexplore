@@ -5,9 +5,11 @@
 {% block body_class %}form profile{% endblock %}
 
 {% block main %}
-    <section class="app-section">
+    <header>
         <h1>Votre Compte</h1>
+    </header>
 
+    <section class="app-section">
         {{ form_start(form, {'attr': {'class': 'app-form'}}) }}
         <fieldset class="form-fieldset">
             <div class="form-group">
