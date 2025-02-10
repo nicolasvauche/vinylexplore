@@ -1,0 +1,16 @@
+<div class="app-grid two">
+    {% for album in albums %}
+        <div class="app-card">
+            <a href="#">
+                <div class="card-header">
+                    <img src="{{ asset('uploads/album/' ~ album.cover) }}" class="card-image" alt="{{ album.artist.name }} - {{ album.title }}"/>
+                </div>
+
+                <div class="card-body">
+                    <p class="card-subtitle">{{ album.artist.name }}</p>
+                    <p class="card-title">{{ album.title }}</p>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+</div>

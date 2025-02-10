@@ -1,0 +1,7 @@
+<div {{ attributes }}>
+    {% set albums = this.albums(app.user.id) %}
+
+    {% include ('hub/default/_component/_filters.html.twig') %}
+    {% include ('hub/default/_component/_grid.html.twig') %}
+    {% include ('hub/default/_component/_pagination.html.twig') %}
+</div>

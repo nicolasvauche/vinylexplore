@@ -2,6 +2,7 @@ twig:
   file_name_pattern: '*.twig'
   globals:
     app_locale: '%app_locale%'
+    app_albumService: '@App\Service\Hub\AlbumService'
 
 when@test:
   twig:
