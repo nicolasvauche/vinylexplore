@@ -106,7 +106,7 @@ final class AddController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             /** @var UploadedFile $coverFile */
             $coverFile = $form->get('cover')->getData();
-            $filename = $user->getId() . '-' . strtolower($slugger->slug($artist->getName())) . '_' . strtolower($slugger->slug($album->getTitle()));
+            $filename = $user->getId() . '-' . strtolower($slugger->slug($form->get('artist')->getData())) . '_' . strtolower($slugger->slug($form->get('title')->getData()));
             if($coverFile) {
                 $coverFileName = $fileUploaderService->upload($coverFile, $filename);
             } else if($request->request->get('cover_alt')) {
@@ -119,17 +119,16 @@ final class AddController extends AbstractController
             if(!$artist) {
                 $artist = new Artist();
                 $artist->setName($form->get('artist')->getData());
-
-                $country = $entityManager->getRepository(Country::class)->findOneBy(['name' => $form->get('country')->getData()]);
-                if(!$country) {
-                    $country = new Country();
-                    $country->setName($form->get('country')->getData());
-                    $entityManager->persist($country);
-                }
-
-                $artist->setCountry($country);
-                $entityManager->persist($artist);
             }
+
+            $country = $entityManager->getRepository(Country::class)->findOneBy(['name' => $form->get('country')->getData()]);
+            if(!$country) {
+                $country = new Country();
+                $country->setName($form->get('country')->getData());
+                $entityManager->persist($country);
+            }
+            $artist->setCountry($country);
+            $entityManager->persist($artist);
 
             if($form->get('genre')->getData()) {
                 $genre = $entityManager->getRepository(Genre::class)->findOneBy(['name' => $form->get('genre')->getData()]);

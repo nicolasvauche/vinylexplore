@@ -1,0 +1,20 @@
+&.edit {
+  .app-main {
+    .app-section {
+      .app-form {
+        padding: 0.25rem 0 0.5rem;
+
+        .form-fieldset {
+          .form-group {
+            margin-bottom: 1.5rem;
+
+            .cover {
+              margin: 1rem auto;
+              height: 19dvh;
+            }
+          }
+        }
+      }
+    }
+  }
+}

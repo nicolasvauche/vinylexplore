@@ -42,8 +42,8 @@ readonly class FileUploaderService
 
     public function remove(string $filename): void
     {
-        if($this->filesystem->exists($this->uploadsDirectory . '/' . $filename)) {
-            $this->filesystem->remove($this->uploadsDirectory . '/' . $filename);
+        if($this->filesystem->exists($this->uploadsDirectory . '/album/' . $filename)) {
+            $this->filesystem->remove($this->uploadsDirectory . '/album/' . $filename);
         }
     }
 }

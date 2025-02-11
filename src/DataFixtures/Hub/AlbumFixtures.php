@@ -18,7 +18,7 @@ class AlbumFixtures extends Fixture implements OrderedFixtureInterface
         for($i = 1; $i < 201; $i++) {
             $album = new Album();
             $album->setTitle('Wish You Were Here-' . $i)
-                ->setCover('pink-floyd_wish-you-were-here.jpg')
+                ->setCover('1-pink-floyd_wish-you-were-here.jpg')
                 ->setYear('1975')
                 ->setArtist($this->getReference('artist', Artist::class))
                 ->setGenre($this->getReference('genre', Genre::class))

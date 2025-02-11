@@ -15,11 +15,11 @@
         <h1 class="app-pagetitle">Détails d'un Album</h1>
 
         <div class="app-manage">
-            <a href="#" class="edit">
-                {{ ux_icon('mdi:circle-edit-outline', {'class': 'app-icon'}) }}
+            <a href="{{ path('app_hub_edit', {'slug': album.slug}) }}" class="edit">
+                {{ ux_icon('mdi:edit', {'class': 'app-icon'}) }}
             </a>
 
-            <a href="#" class="delete" onclick="return window.confirm('Supprimer cet album ?')">
+            <a href="{{ path('app_hub_delete', {'slug': album.slug}) }}" class="delete" onclick="return window.confirm('Supprimer cet album ?')">
                 {{ ux_icon('mdi:delete', {'class': 'app-icon'}) }}
             </a>
         </div>
