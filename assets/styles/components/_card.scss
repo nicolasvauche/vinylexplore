@@ -6,6 +6,7 @@
 
   & > a {
     @include displayFlex(space-between, center, null, column);
+    width: 100%;
   }
 
   .card-header {
@@ -13,14 +14,14 @@
 
     .card-image {
       width: 100%;
-      height: 20dvh;
+      height: 16dvh;
       object-fit: cover;
     }
   }
 
   .card-body {
     box-sizing: border-box;
-    padding: 0.5rem;
+    padding: 0.25rem 0.5rem;
     width: 100%;
 
     .card-title {

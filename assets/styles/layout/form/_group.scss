@@ -44,6 +44,22 @@
     outline: none;
   }
 
+  .form-file {
+    @extend .form-control;
+    font-size: 0.85rem;
+
+    &:focus {
+      outline: none;
+      color: $white;
+      background-color: $secondary;
+      border-color: $primary;
+    }
+
+    &::file-selector-button {
+      /*display: none;*/
+    }
+  }
+
   .help-text {
     margin-right: 0.5rem;
     font-size: 0.75rem;

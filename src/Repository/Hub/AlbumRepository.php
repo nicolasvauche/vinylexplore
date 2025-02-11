@@ -20,14 +20,13 @@ class AlbumRepository extends ServiceEntityRepository
     public function findUserAlbumsByFilters(User $user, array $filters): array
     {
         $qb = $this->createQueryBuilder('album')
+            ->join('album.artist', 'artist')
             ->where('album.owner = :user')
             ->setParameter('user', $user);
 
         if(isset($filters['artist'])) {
-            $qb->join('album.artist', 'artist')
-                ->andWhere('LOWER(artist.name) LIKE :artist')
-                ->setParameter('artist', '%' . strtolower($filters['artist']) . '%')
-                ->addOrderBy('artist.name', 'ASC');
+            $qb->andWhere('LOWER(artist.name) LIKE :artist')
+                ->setParameter('artist', '%' . strtolower($filters['artist']) . '%');
         }
 
         if(isset($filters['album'])) {
@@ -38,15 +37,13 @@ class AlbumRepository extends ServiceEntityRepository
         if(isset($filters['genre'])) {
             $qb->join('album.genre', 'genre')
                 ->andWhere('LOWER(genre.name) LIKE :genre')
-                ->setParameter('genre', '%' . strtolower($filters['genre']) . '%')
-                ->addOrderBy('genre.name', 'ASC');
+                ->setParameter('genre', '%' . strtolower($filters['genre']) . '%');
         }
 
         if(isset($filters['style'])) {
             $qb->join('album.style', 'style')
                 ->andWhere('LOWER(style.name) LIKE :style')
-                ->setParameter('style', '%' . strtolower($filters['style']) . '%')
-                ->addOrderBy('style.name', 'ASC');
+                ->setParameter('style', '%' . strtolower($filters['style']) . '%');
         }
 
         if(isset($filters['year'])) {
@@ -58,11 +55,11 @@ class AlbumRepository extends ServiceEntityRepository
             $qb->join('album.artist', 'artist')
                 ->join('artist.country', 'country')
                 ->andWhere('LOWER(country.name) LIKE :country')
-                ->setParameter('country', '%' . strtolower($filters['country']) . '%')
-                ->addOrderBy('country.name', 'ASC');
+                ->setParameter('country', '%' . strtolower($filters['country']) . '%');
         }
 
-        $qb->addOrderBy('album.year', 'ASC');
+        $qb->addOrderBy('artist.name', 'ASC')
+            ->addOrderBy('album.year', 'ASC');
 
         return $qb->getQuery()->getResult();
     }

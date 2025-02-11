@@ -21,7 +21,7 @@
             <a href="#" class="playlists" title="Gestion des Playlists">
                 {{ ux_icon('mdi:playlist-music-outline', {'class': 'app-icon'}) }}
             </a>
-            <a href="#" class="add" title="Nouvel Album">
+            <a href="{{ path('app_hub_import') }}" class="add {% if app.request.get('_route') == 'app_hub_import' or app.request.get('_route') == 'app_hub_add' %}active{% endif %}" title="Nouvel Album">
                 {{ ux_icon('mdi:disc', {'class': 'app-icon'}) }}
             </a>
         </div>

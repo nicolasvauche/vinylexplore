@@ -1,0 +1,13 @@
+.app-text {
+  box-sizing: border-box;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  font-size: 0.85rem;
+  text-align: justify;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  background-color: rgba($secondary, 0.15);
+  border: 2px solid $secondary;
+  border-radius: 0.5rem;
+}

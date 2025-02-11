@@ -1,0 +1,106 @@
+{% extends 'hub/_layout/_index.html.twig' %}
+
+{% block title %}Nouvel Album{% endblock %}
+
+{% block body_class %}hub form add{% endblock %}
+
+{% block main %}
+    <header class="app-controls">
+        <div class="app-search">
+            <a href="{{ path('app_hub_home') }}" class="filter" title="Retour">
+                {{ ux_icon('mdi:arrow-back-circle', {'class': 'app-icon'}) }}
+            </a>
+        </div>
+
+        <h1 class="app-pagetitle">Nouvel Album</h1>
+
+        <div class="app-manage">
+            &nbsp;
+        </div>
+    </header>
+
+    <section class="app-section">
+        {{ form_start(form, {'attr': {'class': 'app-form'}}) }}
+        <fieldset class="form-fieldset">
+            <div class="form-group">
+                <div class="control">
+                    {{ form_label(form.artist) }}
+                    {{ form_widget(form.artist) }}
+                </div>
+                {{ form_help(form.artist) }}
+                {{ form_errors(form.artist) }}
+            </div>
+
+            <div class="form-group">
+                <div class="control">
+                    {{ form_label(form.title) }}
+                    {{ form_widget(form.title) }}
+                </div>
+                {{ form_help(form.title) }}
+                {{ form_errors(form.title) }}
+            </div>
+
+            <div class="app-grid two">
+                <div class="form-group">
+                    <div class="control">
+                        {{ form_label(form.genre) }}
+                        {{ form_widget(form.genre) }}
+                    </div>
+                    {{ form_help(form.genre) }}
+                    {{ form_errors(form.genre) }}
+                </div>
+
+                <div class="form-group">
+                    <div class="control">
+                        {{ form_label(form.style) }}
+                        {{ form_widget(form.style) }}
+                    </div>
+                    {{ form_help(form.style) }}
+                    {{ form_errors(form.style) }}
+                </div>
+            </div>
+
+            <div class="app-grid two">
+                <div class="form-group">
+                    <div class="control">
+                        {{ form_label(form.year) }}
+                        {{ form_widget(form.year) }}
+                    </div>
+                    {{ form_help(form.year) }}
+                    {{ form_errors(form.year) }}
+                </div>
+
+                <div class="form-group">
+                    <div class="control">
+                        {{ form_label(form.country) }}
+                        {{ form_widget(form.country) }}
+                    </div>
+                    {{ form_help(form.country) }}
+                    {{ form_errors(form.country) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control">
+                    <div class="app-covers app-grid two" data-controller="image-lazy-load">
+                        {% for cover in result.covers %}
+                            <div class="app-cover">
+                                <img data-src="{{ cover }}" class="app-img lazy-load" alt="{{ result.title }}"/>
+                                <input type="radio" name="cover_alt" value="{{ cover }}"/>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    {{ form_label(form.cover) }}
+                    {{ form_widget(form.cover) }}
+                </div>
+                {{ form_help(form.cover) }}
+                {{ form_errors(form.cover) }}
+            </div>
+
+            {{ form_widget(form._token) }}
+            <button class="app-button cta" type="submit">Importer</button>
+        </fieldset>
+        {{ form_end(form) }}
+    </section>
+{% endblock %}

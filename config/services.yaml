@@ -24,5 +24,13 @@ services:
       - '../src/Entity/'
       - '../src/Kernel.php'
 
+  App\Service\Hub\DiscogsService:
+    arguments:
+      $apiKey: '%env(DISCOGS_API_KEY)%'
+
+  App\Service\Hub\FileUploaderService:
+    arguments:
+      $uploadsDirectory: '%uploads_directory%'
+
   # add more service definitions when explicit configuration is needed
   # please note that last definitions always *replace* previous ones

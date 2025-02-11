@@ -1,0 +1,55 @@
+{% extends 'hub/_layout/_index.html.twig' %}
+
+{% block title %}Nouvel Album{% endblock %}
+
+{% block body_class %}form{% endblock %}
+
+{% block main %}
+    <header class="app-controls">
+        <div class="app-search">
+            <a href="{{ path('app_hub_home') }}" class="filter" title="Retour">
+                {{ ux_icon('mdi:arrow-back-circle', {'class': 'app-icon'}) }}
+            </a>
+        </div>
+
+        <h1 class="app-pagetitle">Nouvel Album</h1>
+
+        <div class="app-manage">
+            &nbsp;
+        </div>
+    </header>
+
+    <header>
+        <p class="app-text">
+            Commencez par saisir les informations de album que vous recherchez. L'API Discogs vous renverra les résultats les plus pertinents. Vous pourrez modifier les informations avant d'ajouter à votre collection.
+        </p>
+    </header>
+
+    <section class="app-section">
+
+        {{ form_start(form, {'attr': {'class': 'app-form'}}) }}
+        <fieldset class="form-fieldset">
+            <div class="form-group">
+                <div class="control">
+                    {{ form_label(form.artist) }}
+                    {{ form_widget(form.artist) }}
+                </div>
+                {{ form_help(form.artist) }}
+                {{ form_errors(form.artist) }}
+            </div>
+
+            <div class="form-group">
+                <div class="control">
+                    {{ form_label(form.album) }}
+                    {{ form_widget(form.album) }}
+                </div>
+                {{ form_help(form.album) }}
+                {{ form_errors(form.album) }}
+            </div>
+
+            {{ form_widget(form._token) }}
+            <button class="app-button cta" type="submit">Rechercher</button>
+        </fieldset>
+        {{ form_end(form) }}
+    </section>
+{% endblock %}

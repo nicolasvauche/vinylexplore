@@ -1,0 +1,32 @@
+.app-covers {
+  margin: 0.5rem 0;
+
+  .app-cover {
+    position: relative;
+    text-align: center;
+
+    img {
+      position: relative;
+      z-index: 2;
+      display: block;
+      width: calc(100% - 0.5rem);
+      border: 0.25rem solid $white;
+      border-radius: 0.5rem;
+    }
+
+    input[type="radio"] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      -webkit-appearance: none;
+    }
+
+    &.active {
+      img {
+        border-color: $secondary;
+      }
+    }
+  }
+}
