@@ -33,6 +33,9 @@ class DiscogsService
         $artistNames = [];
 
         $totalPages = $this->getTotalPages($artist, $album);
+        if($totalPages === 0) {
+            return [];
+        }
 
         for($page = 1; $page <= self::MAX_PAGES && $page <= $totalPages; $page++) {
             $results = $this->fetchResults($artist, $album, $page);
@@ -77,6 +80,9 @@ class DiscogsService
         );
 
         $data = $response->toArray();
+        if(sizeof($data['results']) === 0) {
+            return 0;
+        }
 
         return min($data['pagination']['pages'] ?? 1, self::MAX_PAGES);
     }

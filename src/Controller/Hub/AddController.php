@@ -48,7 +48,7 @@ final class AddController extends AbstractController
     {
         $result = $discogsService->search($artist, $album);
         if(sizeof($result) === 0) {
-            $this->addFlash('danger', 'Aucun résultat trouvé pour cet artiste et cet album');
+            $this->addFlash('warning', "Aucun résultat trouvé pour l'album $album de $artist.");
 
             return $this->redirectToRoute('app_hub_import', [], 301);
         }
