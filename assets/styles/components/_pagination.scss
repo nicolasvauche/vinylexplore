@@ -1,0 +1,40 @@
+.app-pagination {
+  @include displayFlex(space-between, center);
+  box-sizing: border-box;
+  padding: 1rem 0 0;
+  width: 100%;
+
+  .previous,
+  .pages,
+  .next {
+    @include displayFlex(center, center, 0.5rem);
+
+    a {
+      @include displayFlex(center, center);
+      padding: 0.25rem;
+      width: 1rem;
+      height: 1rem;
+      font-size: 0.75rem;
+      border: 1px solid $black;
+      border-radius: 0.5rem;
+
+      &.disabled {
+        pointer-events: none;
+        opacity: 0;
+      }
+
+      &.active {
+        color: $white;
+        background-color: $primary;
+      }
+
+      .app-icon {
+        height: 1.5rem;
+      }
+    }
+  }
+
+  .pages {
+    flex: 1;
+  }
+}

@@ -5,6 +5,7 @@ namespace App\Twig\Components\Hub\Album;
 use App\Entity\User;
 use App\Service\Hub\AlbumService;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\Attribute\LiveArg;
@@ -18,29 +19,35 @@ class FilterAlbums
 
     private ?User $user = null;
 
-    #[LiveProp(writable: true)]
+    #[LiveProp(writable: true, onUpdated: 'resetPage')]
     public ?string $artist = null;
 
-    #[LiveProp(writable: true)]
+    #[LiveProp(writable: true, onUpdated: 'resetPage')]
     public ?string $album = null;
 
-    #[LiveProp(writable: true)]
+    #[LiveProp(writable: true, onUpdated: 'resetPage')]
     public ?string $genre = null;
 
-    #[LiveProp(writable: true)]
+    #[LiveProp(writable: true, onUpdated: 'resetPage')]
     public ?string $style = null;
 
-    #[LiveProp(writable: true)]
+    #[LiveProp(writable: true, onUpdated: 'resetPage')]
     public ?string $year = null;
 
-    #[LiveProp(writable: true)]
+    #[LiveProp(writable: true, onUpdated: 'resetPage')]
     public ?string $country = null;
 
-    public function __construct(private EntityManagerInterface $entityManager,
-                                private AlbumService           $albumService)
+    #[LiveProp(writable: true)]
+    public int $page = 1;
+
+    private const ITEMS_PER_PAGE = 6;
+
+    public function __construct(
+        private readonly EntityManagerInterface $entityManager,
+        private readonly AlbumService           $albumService,
+        private readonly PaginatorInterface     $paginator
+    )
     {
-        $this->entityManager = $entityManager;
-        $this->albumService = $albumService;
     }
 
     private function getUser(int $userId): User
@@ -50,6 +57,50 @@ class FilterAlbums
 
     #[LiveAction]
     public function getAlbums(#[LiveArg] int $userId): array
+    {
+        $filters = $this->buildFilters();
+        $query = $this->albumService->getUserAlbums($this->getUser($userId), $filters);
+
+        $pagination = $this->paginator->paginate(
+            $query,
+            $this->page,
+            self::ITEMS_PER_PAGE
+        );
+
+        return [
+            'albums' => $pagination->getItems(),
+            'pagination' => $pagination,
+        ];
+    }
+
+    #[LiveAction]
+    public function changePage(#[LiveArg] int $page): void
+    {
+        $this->page = $page;
+    }
+
+    public function resetPage(): void
+    {
+        $this->page = 1;
+    }
+
+    #[LiveAction]
+    public function resetFilters(#[LiveArg] string $filter): void
+    {
+        match ($filter) {
+            'artist' => $this->artist = null,
+            'album' => $this->album = null,
+            'genre' => $this->genre = null,
+            'style' => $this->style = null,
+            'year' => $this->year = null,
+            'country' => $this->country = null,
+            default => null,
+        };
+
+        $this->page = 1;
+    }
+
+    private function buildFilters(): array
     {
         $filters = [];
 
@@ -77,33 +128,6 @@ class FilterAlbums
             $filters['country'] = $this->country;
         }
 
-        return $this->albumService->getUserAlbums($this->getUser($userId), $filters);
-    }
-
-    #[LiveAction]
-    public function resetFilters(#[LiveArg] string $filter): void
-    {
-        switch($filter) {
-            case 'artist':
-                $this->artist = null;
-                break;
-            case 'album':
-                $this->album = null;
-                break;
-            case 'genre':
-                $this->genre = null;
-                break;
-            case 'style':
-                $this->style = null;
-                break;
-            case 'year':
-                $this->year = null;
-                break;
-            case 'country':
-                $this->country = null;
-                break;
-            default:
-                break;
-        }
+        return $filters;
     }
 }

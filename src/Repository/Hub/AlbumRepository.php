@@ -52,8 +52,7 @@ class AlbumRepository extends ServiceEntityRepository
         }
 
         if(isset($filters['country'])) {
-            $qb->join('album.artist', 'artist')
-                ->join('artist.country', 'country')
+            $qb->join('artist.country', 'country')
                 ->andWhere('LOWER(country.name) LIKE :country')
                 ->setParameter('country', '%' . strtolower($filters['country']) . '%');
         }

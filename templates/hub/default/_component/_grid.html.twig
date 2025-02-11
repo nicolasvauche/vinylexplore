@@ -9,7 +9,9 @@
 
                     <div class="card-body">
                         <p class="card-subtitle">{{ album.artist.name }}</p>
-                        <p class="card-title">{{ album.title }}</p>
+                        <p class="card-title">
+                            {{ album.title | length > 50 ? album.title | slice(0, 50) ~ '…' : album.title }}
+                        </p>
                     </div>
                 </a>
             </div>

@@ -1,5 +1,7 @@
 <div class="app-component" {{ attributes }}>
-    {% set albums = this.albums(app.user.id) %}
+    {% set data = this.getAlbums(app.user.id) %}
+    {% set albums = data.albums %}
+    {% set pagination = data.pagination %}
 
     <header class="app-controls">
         <div class="app-search">
@@ -14,7 +16,7 @@
         </div>
 
         <h1 class="app-pagetitle">
-            Votre Collection ({{ app_albumService.userAlbums(app.user) | length }})
+            Votre Collection ({{ pagination.getTotalItemCount }})
         </h1>
 
         <div class="app-manage">
@@ -28,8 +30,54 @@
     </header>
 
     <section class="app-section">
-        {% include ('hub/default/_component/_filters.html.twig') %}
-        {% include ('hub/default/_component/_grid.html.twig') %}
-        {% include ('hub/default/_component/_pagination.html.twig') %}
+        {% include 'hub/default/_component/_filters.html.twig' %}
+        {% include 'hub/default/_component/_grid.html.twig' %}
+        {% if pagination.pageCount > 1 %}
+            <div class="app-pagination">
+                <div class="previous">
+                    <a href="#" {{ live_action('changePage', {page: 1}) }} class="{% if pagination.currentPageNumber <= 1 %}disabled{% endif %}" onclick=" return false">
+                        {{ ux_icon('mdi:page-first', {'class': 'app-icon'}) }}
+                    </a>
+                    <a href="#" {{ live_action('changePage', {page: pagination.currentPageNumber - 1}) }} class="{% if pagination.currentPageNumber <= 1 %}disabled{% endif %}" onclick="return false">
+                        {{ ux_icon('mdi:navigate-before', {'class': 'app-icon'}) }}
+                    </a>
+                </div>
+
+                <div class="pages">
+                    {% set pageRange = 6 %}
+                    {% set halfRange = (pageRange // 2) - 1 %}
+
+                    {% set startPage = max(1, pagination.currentPageNumber - halfRange) %}
+                    {% set endPage = min(pagination.pageCount, startPage + pageRange - 1) %}
+
+                    {% if pagination.currentPageNumber <= halfRange + 1 %}
+                        {% set startPage = 1 %}
+                        {% set endPage = min(pageRange, pagination.pageCount) %}
+                    {% endif %}
+
+                    {% if pagination.currentPageNumber > (pagination.pageCount - halfRange - 1) %}
+                        {% set startPage = max(1, pagination.pageCount - pageRange + 1) %}
+                        {% set endPage = pagination.pageCount %}
+                    {% endif %}
+
+                    {% for page in range(startPage, endPage) %}
+                        <a href="#" {{ live_action('changePage', {page: page}) }}
+                           class="{{ page == pagination.currentPageNumber ? 'active' : '' }}"
+                           onclick="return false">
+                            {{ page }}
+                        </a>
+                    {% endfor %}
+                </div>
+
+                <div class="next">
+                    <a href="#" {{ live_action('changePage', {page: pagination.currentPageNumber + 1}) }} class="{% if pagination.currentPageNumber >= pagination.pageCount %}disabled{% endif %}" onclick="return false">
+                        {{ ux_icon('mdi:navigate-next', {'class': 'app-icon'}) }}
+                    </a>
+                    <a href="#" {{ live_action('changePage', {page: pagination.pageCount}) }} class="{% if pagination.currentPageNumber >= pagination.pageCount %}disabled{% endif %}" onclick="return false">
+                        {{ ux_icon('mdi:page-last', {'class': 'app-icon'}) }}
+                    </a>
+                </div>
+            </div>
+        {% endif %}
     </section>
 </div>
