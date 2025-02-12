@@ -4,6 +4,8 @@ namespace App\Entity\Hub;
 
 use App\Entity\User;
 use App\Repository\Hub\AlbumRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -41,6 +43,17 @@ class Album
     #[ORM\ManyToOne(inversedBy: 'albums')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $owner = null;
+
+    /**
+     * @var Collection<int, Mood>
+     */
+    #[ORM\ManyToMany(targetEntity: Mood::class, inversedBy: 'albums')]
+    private Collection $moods;
+
+    public function __construct()
+    {
+        $this->moods = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -139,6 +152,30 @@ class Album
     public function setOwner(?User $owner): static
     {
         $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Mood>
+     */
+    public function getMoods(): Collection
+    {
+        return $this->moods;
+    }
+
+    public function addMood(Mood $mood): static
+    {
+        if (!$this->moods->contains($mood)) {
+            $this->moods->add($mood);
+        }
+
+        return $this;
+    }
+
+    public function removeMood(Mood $mood): static
+    {
+        $this->moods->removeElement($mood);
 
         return $this;
     }

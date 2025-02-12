@@ -2,10 +2,28 @@
 
 {% block title %}Vos Préférences{% endblock %}
 
-{% block body_class %}{% endblock %}
+{% block body_class %}match settings{% endblock %}
 
 {% block main %}
     <header>
         <h1>Vos Préférences</h1>
     </header>
+
+    <header>
+        <p class="app-text">
+            Choisissez votre
+            <strong>humeur</strong> du moment afin d'affiner les suggestions. Si vous n'en choisissez aucune, le mode
+            <strong>aléatoire</strong> sera activé.
+        </p>
+    </header>
+
+    <section class="app-section">
+        <div class="moods">
+            {% for mood in app_moodService.moods %}
+                <a href="{{ path('app_match_mood', {'slug': mood.slug}) }}" class="{% if app.user.mood != mood %}inactive{% endif %}" title="{{ mood.name }}">
+                    {{ ux_icon(mood.icon, {'class': 'app-icon'}) }}
+                </a>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}

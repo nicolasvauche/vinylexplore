@@ -3,6 +3,7 @@ twig:
   globals:
     app_locale: '%app_locale%'
     app_albumService: '@App\Service\Hub\AlbumService'
+    app_moodService: '@App\Service\Hub\MoodService'
 
 when@test:
   twig:

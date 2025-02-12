@@ -1,0 +1,27 @@
+&.settings {
+  .app-main {
+    .app-section {
+      justify-content: flex-start;
+
+      .moods {
+        @include displayGrid(repeat(3, 1fr), 3rem);
+        margin: 1rem 0;
+        width: 100%;
+
+        a {
+          @include displayFlex(center, center);
+          text-align: center;
+          color: $third;
+
+          .app-icon {
+            height: 3rem;
+          }
+
+          &.inactive {
+            opacity: 0.25;
+          }
+        }
+      }
+    }
+  }
+}

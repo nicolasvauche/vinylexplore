@@ -46,24 +46,11 @@
                     {{ album.artist.country.name }}
                 </p>
                 <div class="infos">
-                    <a href="#" class="inactive">
-                        {{ ux_icon('fa6-solid:hand-fist', {'class': 'app-icon'}) }}
-                    </a>
-                    <a href="#">
-                        {{ ux_icon('fa6-solid:peace', {'class': 'app-icon'}) }}
-                    </a>
-                    <a href="#">
-                        {{ ux_icon('mdi:heart', {'class': 'app-icon'}) }}
-                    </a>
-                    <a href="#">
-                        {{ ux_icon('fa6-solid:champagne-glasses', {'class': 'app-icon'}) }}
-                    </a>
-                    <a href="#">
-                        {{ ux_icon('rivet-icons:sad', {'class': 'app-icon'}) }}
-                    </a>
-                    <a href="#">
-                        {{ ux_icon('ri:focus-2-fill', {'class': 'app-icon'}) }}
-                    </a>
+                    {% for mood in app_moodService.moods %}
+                        <a href="{{ path('app_hub_mood', {'albumId': album.id, 'moodId': mood.id}) }}" class="{% if mood not in album.moods %}inactive{% endif %}" title="{{ mood.name }}">
+                            {{ ux_icon(mood.icon, {'class': 'app-icon'}) }}
+                        </a>
+                    {% endfor %}
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Hub\Album;
+use App\Entity\Hub\Mood;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -51,6 +52,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\OneToMany(targetEntity: Album::class, mappedBy: 'owner', orphanRemoval: true)]
     private Collection $albums;
+
+    #[ORM\ManyToOne]
+    private ?Mood $mood = null;
 
     public function __construct()
     {
@@ -194,6 +198,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $album->setOwner(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMood(): ?Mood
+    {
+        return $this->mood;
+    }
+
+    public function setMood(?Mood $mood): static
+    {
+        $this->mood = $mood;
 
         return $this;
     }
