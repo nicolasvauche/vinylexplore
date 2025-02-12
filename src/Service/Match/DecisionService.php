@@ -25,7 +25,7 @@ readonly class DecisionService
 
         $listeningContext = new ListeningContext();
         $listeningContext->setSession($listeningSession)
-            ->setMood($context['mood'])
+            ->setMood(strtolower($context['mood']))
             ->setSeason($context['season'])
             ->setDayOfWeek($context['dayOfWeek'])
             ->setTimeOfDay($context['timeOfDay']);
