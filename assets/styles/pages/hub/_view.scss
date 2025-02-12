@@ -1,0 +1,43 @@
+&.view {
+  .app-main {
+    .app-section {
+      .app-card {
+        width: 100%;
+        height: 100%;
+
+        .card-header {
+          .card-image {
+            height: 56dvh;
+          }
+        }
+
+        .card-body {
+          .app-text {
+            margin-bottom: 0.5rem;
+          }
+
+          .infos {
+            @include displayFlex(center, center);
+            margin: 1rem 0;
+            width: 100%;
+
+            a {
+              @include displayFlex(center, center);
+              flex: 1;
+              text-align: center;
+              color: $third;
+
+              .app-icon {
+                height: 1.5rem;
+              }
+
+              &.inactive {
+                opacity: 0.25;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -9,6 +9,24 @@
         <h1>Vos Préférences</h1>
     </header>
 
+    {% set context = app_contextService.context(app.user) %}
+    <header>
+        <div class="app-text">
+            <p>
+                <strong>Jour de la semaine :</strong>
+                {{ context['dayOfWeek'] | title }}
+            </p>
+            <p>
+                <strong>Moment de la journée :</strong>
+                {{ context['timeOfDay'] | title }}
+            </p>
+            <p>
+                <strong>Saison :</strong>
+                {{ context['season'] | title }}
+            </p>
+        </div>
+    </header>
+
     <header>
         <p class="app-text">
             Choisissez votre

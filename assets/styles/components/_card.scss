@@ -4,40 +4,6 @@
   border-radius: 0.5rem;
   box-shadow: 2px 2px 0.25rem rgba($black, 0.75);
 
-  &.full {
-    width: 100%;
-    height: 100%;
-
-    .card-header {
-      .card-image {
-        height: 65dvh;
-      }
-    }
-
-    .card-body {
-      .infos {
-        @include displayFlex(center, center);
-        margin: 1rem 0;
-        width: 100%;
-
-        a {
-          @include displayFlex(center, center);
-          flex: 1;
-          text-align: center;
-          color: $third;
-
-          .app-icon {
-            height: 1.5rem;
-          }
-
-          &.inactive {
-            opacity: 0.25;
-          }
-        }
-      }
-    }
-  }
-
   & > a {
     @include displayFlex(space-between, center, null, column);
     width: 100%;

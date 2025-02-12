@@ -6,7 +6,7 @@
 parameters:
   app_locale: fr
   app_locale_str: fr_FR
-  timezone: '%env(resolve:APP_TIMEZONE)%'
+  app_timezone: '%env(resolve:APP_TIMEZONE)%'
   uploads_directory: '%kernel.project_dir%/public/uploads'
 
 services:

@@ -2,7 +2,7 @@
 
 {% block title %}Détails d'un Album{% endblock %}
 
-{% block body_class %}form{% endblock %}
+{% block body_class %}hub view{% endblock %}
 
 {% block main %}
     <header class="app-controls">
@@ -27,7 +27,7 @@
 
 
     <section class="app-section">
-        <div class="app-card full">
+        <div class="app-card">
             <div class="card-header">
                 <img src="{{ asset('uploads/album/' ~ album.cover) }}" alt="{{ album.title }}" class="card-image"/>
             </div>
@@ -45,6 +45,7 @@
                     -
                     {{ album.artist.country.name }}
                 </p>
+
                 <div class="infos">
                     {% for mood in app_moodService.moods %}
                         <a href="{{ path('app_hub_mood', {'albumId': album.id, 'moodId': mood.id}) }}" class="{% if mood not in album.moods %}inactive{% endif %}" title="{{ mood.name }}">
@@ -52,6 +53,18 @@
                         </a>
                     {% endfor %}
                 </div>
+
+                <p class="app-text">
+                    <strong>Nombre d'écoutes :</strong>
+                    {{ app_historyService.albumHistory(album)['playCount'] }}
+                    <br/>
+                    <strong>Dernière écoute :</strong>
+                    {% if app_historyService.albumHistory(album)['lastPlayedDate'] %}
+                        {{ app_historyService.albumHistory(album)['lastPlayedDate'] | date('d/m/Y à H:i') }}
+                    {% else %}
+                        —
+                    {% endif %}
+                </p>
             </div>
         </div>
     </section>

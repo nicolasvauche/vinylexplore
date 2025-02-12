@@ -2,6 +2,8 @@
 
 namespace App\Entity\Hub;
 
+use App\Entity\Match\ListeningFrequency;
+use App\Entity\Match\ListeningSession;
 use App\Entity\User;
 use App\Repository\Hub\AlbumRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -50,9 +52,23 @@ class Album
     #[ORM\ManyToMany(targetEntity: Mood::class, inversedBy: 'albums')]
     private Collection $moods;
 
+    /**
+     * @var Collection<int, ListeningSession>
+     */
+    #[ORM\OneToMany(targetEntity: ListeningSession::class, mappedBy: 'album', orphanRemoval: true)]
+    private Collection $listeningSessions;
+
+    /**
+     * @var Collection<int, ListeningFrequency>
+     */
+    #[ORM\OneToMany(targetEntity: ListeningFrequency::class, mappedBy: 'album', orphanRemoval: true)]
+    private Collection $listeningFrequencies;
+
     public function __construct()
     {
         $this->moods = new ArrayCollection();
+        $this->listeningSessions = new ArrayCollection();
+        $this->listeningFrequencies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -176,6 +192,66 @@ class Album
     public function removeMood(Mood $mood): static
     {
         $this->moods->removeElement($mood);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ListeningSession>
+     */
+    public function getListeningSessions(): Collection
+    {
+        return $this->listeningSessions;
+    }
+
+    public function addListeningSession(ListeningSession $listeningSession): static
+    {
+        if (!$this->listeningSessions->contains($listeningSession)) {
+            $this->listeningSessions->add($listeningSession);
+            $listeningSession->setAlbum($this);
+        }
+
+        return $this;
+    }
+
+    public function removeListeningSession(ListeningSession $listeningSession): static
+    {
+        if ($this->listeningSessions->removeElement($listeningSession)) {
+            // set the owning side to null (unless already changed)
+            if ($listeningSession->getAlbum() === $this) {
+                $listeningSession->setAlbum(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ListeningFrequency>
+     */
+    public function getListeningFrequencies(): Collection
+    {
+        return $this->listeningFrequencies;
+    }
+
+    public function addListeningFrequency(ListeningFrequency $listeningFrequency): static
+    {
+        if (!$this->listeningFrequencies->contains($listeningFrequency)) {
+            $this->listeningFrequencies->add($listeningFrequency);
+            $listeningFrequency->setAlbum($this);
+        }
+
+        return $this;
+    }
+
+    public function removeListeningFrequency(ListeningFrequency $listeningFrequency): static
+    {
+        if ($this->listeningFrequencies->removeElement($listeningFrequency)) {
+            // set the owning side to null (unless already changed)
+            if ($listeningFrequency->getAlbum() === $this) {
+                $listeningFrequency->setAlbum(null);
+            }
+        }
 
         return $this;
     }
