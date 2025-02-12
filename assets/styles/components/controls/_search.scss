@@ -1,5 +1,5 @@
 .app-search {
-  @include displayFlex(center, center, 0.25rem);
+  @include displayFlex(center, center, 0.5rem);
 
   .filter {
     transition: all 0.3s;

@@ -5,9 +5,6 @@
 
     <header class="app-controls">
         <div class="app-search">
-            <a href="{{ path('app_hub_search') }}" class="search" title="Recherche avancée">
-                {{ ux_icon('mdi:magnify', {'class': 'app-icon'}) }}
-            </a>
             <a href="#"
                class="filter {% if this.artist or this.album or this.genre or this.style or this.year or this.country %}filtered{% endif %}"
                title="Filtrer" data-controller="filter" data-action="click->filter#toggle">
@@ -20,9 +17,6 @@
         </h1>
 
         <div class="app-manage">
-            <a href="#" class="playlists" title="Gestion des Playlists">
-                {{ ux_icon('mdi:playlist-music-outline', {'class': 'app-icon'}) }}
-            </a>
             <a href="{{ path('app_hub_import') }}" class="add {% if app.request.get('_route') == 'app_hub_import' or app.request.get('_route') == 'app_hub_add' %}active{% endif %}" title="Nouvel Album">
                 {{ ux_icon('mdi:disc', {'class': 'app-icon'}) }}
             </a>
