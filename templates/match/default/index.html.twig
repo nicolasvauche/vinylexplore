@@ -2,10 +2,33 @@
 
 {% block title %}On écoute ça ?{% endblock %}
 
-{% block body_class %}home{% endblock %}
+{% block body_class %}match home{% endblock %}
+
+{% set album = app_suggestService.suggest(app.user) %}
 
 {% block main %}
-    <header>
-        <h1>Accueil</h1>
-    </header>
+    <section class="app-section" id="swiper" data-controller="card-swipe">
+        <div class="app-card full app-swipe" id="swipable" draggable="true" data-id="{{ album.slug }}">
+            <div class="card-header">
+                <img src="{{ asset('uploads/album/' ~ album.cover) }}" alt="{{ album.title }}" class="card-image"/>
+            </div>
+
+            <div class="card-body">
+                <p class="card-subtitle">{{ album.artist.name }}</p>
+                <p class="card-title">{{ album.title }}</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="feedback">
+        <a href="#" class="ignore" id="ignore" title="Ignorer cet album">
+            {{ ux_icon('rivet-icons:ban', {'class': 'app-icon'}) }}
+        </a>
+        <a href="#" class="view" id="view" title="Détails de l'album">
+            {{ ux_icon('icon-park-outline:info', {'class': 'app-icon'}) }}
+        </a>
+        <a href="#" class="play" id="play" title="Écouter cet album">
+            {{ ux_icon('solar:play-bold', {'class': 'app-icon'}) }}
+        </a>
+    </footer>
 {% endblock %}

@@ -4,6 +4,7 @@ twig:
     app_locale: '%app_locale%'
     app_albumService: '@App\Service\Hub\AlbumService'
     app_moodService: '@App\Service\Hub\MoodService'
+    app_suggestService: '@App\Service\Match\SuggestService'
 
 when@test:
   twig:

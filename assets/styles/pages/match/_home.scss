@@ -1,0 +1,72 @@
+&.home {
+  .app-section {
+    .app-card {
+      transition: transform 0.9s;
+      cursor: grab;
+      user-select: none;
+
+      &.full {
+        .card-header {
+          .card-image {
+            height: 69dvh;
+          }
+        }
+
+        .card-body {
+          padding: 1rem;
+
+          .card-title {
+            font-size: 1rem;
+            font-weight: bold;
+          }
+
+          .card-subtitle {
+            margin-bottom: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+    @include displayFlex(center, center);
+    width: 100%;
+
+    a {
+      flex: 1;
+      padding: 0.5rem;
+      text-align: center;
+      opacity: 0.25;
+
+      &:hover,
+      &.active {
+        opacity: 1;
+      }
+
+      &.ignore {
+        &:hover,
+        &.active {
+          color: $danger;
+        }
+      }
+
+      &.view {
+        &:hover,
+        &.active {
+          color: $info;
+        }
+      }
+
+      &.play {
+        &:hover,
+        &.active {
+          color: $success;
+        }
+      }
+
+      .app-icon {
+        height: 2rem;
+      }
+    }
+  }
+}
