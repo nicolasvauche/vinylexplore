@@ -1,0 +1,44 @@
+&.form {
+  .app-main {
+    .app-section {
+      .app-form {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        background-color: rgba($secondary, 0.15);
+        border-radius: 0.5rem;
+        box-shadow: 2px 2px 0.25rem rgba($black, 0.5);
+
+        .form-fieldset {
+          .form-group {
+            @include displayGrid(1fr 3rem, 1rem);
+            align-items: flex-end;
+
+            .control {
+              margin-bottom: 1rem;
+              padding: 0.5rem 0.5rem 0;
+
+              &:last-child {
+                margin-bottom: 0;
+              }
+
+              .form-label {
+                background-color: $white;
+                border-radius: 0.25rem;
+              }
+            }
+
+            .app-button {
+              padding: 0.75rem 0.25rem;
+              background-color: $secondary;
+              border: none;
+
+              .app-icon {
+                height: 1.5rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

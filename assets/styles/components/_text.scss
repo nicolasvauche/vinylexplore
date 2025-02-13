@@ -13,10 +13,19 @@
 
   &.nobg {
     margin: 0;
-    font-weight: bold;
     text-align: center;
     color: $primary;
     background-color: transparent;
     border: none;
+
+    span {
+      font-weight: bold;
+    }
+  }
+
+  a {
+    font-weight: bold;
+    font-style: italic;
+    color: $third;
   }
 }

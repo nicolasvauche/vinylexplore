@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Settings;
+namespace App\Controller\Settings\Location;
 
 use App\Entity\Settings\Location;
 use App\Entity\User;
@@ -9,9 +9,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class LocationController extends AbstractController
+final class DefineController extends AbstractController
 {
-    #[Route('/parametres/lieu/{slug}', name: 'app_settings_location')]
+    #[Route('/parametres/definir-le-lieu/{slug}', name: 'app_settings_location_define')]
     public function index(EntityManagerInterface $entityManager,
                           Location               $location): Response
     {

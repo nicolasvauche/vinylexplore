@@ -18,7 +18,11 @@ readonly class ContextService
             'timeOfDay' => $this->timeOfDayService->getTimeOfDay(),
             'dayOfWeek' => $this->dayOfWeekService->getDayOfWeek(),
             'season' => $this->seasonService->getSeason(),
-            'mood' => $user->getMood()?->getName(),
+            'mood' => strtolower($user->getMood()?->getName()),
+            'location' => [
+                'name' => strtolower($user->getLocation()?->getName()),
+                'description' => $user->getLocation()?->getDescription(),
+            ],
         ];
     }
 }

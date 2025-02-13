@@ -17,10 +17,6 @@
           line-height: 1rem;
           color: $third;
 
-          &.add {
-            color: $success;
-          }
-
           .app-icon {
             height: 3rem;
           }
@@ -36,4 +32,6 @@
       }
     }
   }
+
+  @import "./form";
 }

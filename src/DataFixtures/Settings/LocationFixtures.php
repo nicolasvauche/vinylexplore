@@ -3,6 +3,7 @@
 namespace App\DataFixtures\Settings;
 
 use App\Entity\Settings\Location;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -13,33 +14,24 @@ class LocationFixtures extends Fixture implements OrderedFixtureInterface
     {
         $location = new Location();
         $location->setName('Maison')
-            ->setDescription('à la maison');
+            ->setDescription('à la maison')
+            ->setOwner($this->getReference('user', User::class));
         $manager->persist($location);
         $this->addReference('location-maison', $location);
 
         $location = new Location();
         $location->setName('Chérie')
-            ->setDescription('chez votre chérie');
+            ->setDescription('chez votre chérie')
+            ->setOwner($this->getReference('user', User::class));
         $manager->persist($location);
         $this->addReference('location-cherie', $location);
 
         $location = new Location();
         $location->setName('Travail')
-            ->setDescription('au travail');
+            ->setDescription('au travail')
+            ->setOwner($this->getReference('user', User::class));
         $manager->persist($location);
         $this->addReference('location-travail', $location);
-
-        $location = new Location();
-        $location->setName('Voiture')
-            ->setDescription('en voiture');
-        $manager->persist($location);
-        $this->addReference('location-voiture', $location);
-
-        $location = new Location();
-        $location->setName('Dehors')
-            ->setDescription('dehors');
-        $manager->persist($location);
-        $this->addReference('location-dehors', $location);
 
         $manager->flush();
     }

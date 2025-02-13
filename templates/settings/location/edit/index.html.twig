@@ -1,0 +1,46 @@
+{% extends '_layout/_index.html.twig' %}
+
+{% block title %}Modifier vos Lieux favoris{% endblock %}
+
+{% block body_class %}settings form{% endblock %}
+
+{% block main %}
+    <header class="app-controls">
+        <div class="app-search">
+            <a href="{{ path('app_settings_home') }}" class="filter" title="Retour">
+                {{ ux_icon('mdi:arrow-back-circle', {'class': 'app-icon'}) }}
+            </a>
+        </div>
+
+        <h1 class="app-pagetitle">Vos Lieux favoris</h1>
+
+        <div class="app-manage">
+            &nbsp;
+        </div>
+    </header>
+
+    <section class="app-section">
+        {% for location in app.user.locations %}
+            <form method="post" class="app-form">
+                <fieldset class="form-fieldset">
+                    <div class="form-group">
+                        <div class="controls">
+                            <div class="control">
+                                <label for="{{ location.slug }}-name" class="form-label">Nom du lieu</label>
+                                <input type="text" id="{{ location.slug }}-name" name="name" value="{{ location.name }}" class="form-control" required/>
+                            </div>
+                            <div class="control">
+                                <label for="{{ location.slug }}-description" class="form-label">Description</label>
+                                <input type="text" id="{{ location.slug }}-description" name="description" value="{{ location.description }}" class="form-control" required/>
+                            </div>
+                        </div>
+                        <button class="app-button" type="submit">
+                            {{ ux_icon('mdi:edit', {'class': 'app-icon'}) }}
+                        </button>
+                        <input type="hidden" name="id" value="{{ location.id }}"/>
+                    </div>
+                </fieldset>
+            </form>
+        {% endfor %}
+    </section>
+{% endblock %}

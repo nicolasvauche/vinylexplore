@@ -4,7 +4,6 @@ twig:
     app_locale: '%app_locale%'
     app_albumService: '@App\Service\Hub\AlbumService'
     app_moodService: '@App\Service\Hub\MoodService'
-    app_locationService: '@App\Service\Settings\LocationService'
     app_suggestService: '@App\Service\Match\SuggestService'
     app_contextService: '@App\Service\Match\Context\ContextService'
     app_historyService: '@App\Service\Match\History\HistoryService'

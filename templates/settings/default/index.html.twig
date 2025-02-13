@@ -12,12 +12,25 @@
     {% set context = app_contextService.context(app.user) %}
     <header>
         <p class="app-text nobg">
+            {% if context['location']['name'] or context['mood'] %}
+                Vous êtes
+                {% if context['mood'] %}
+                    <span>{{ context['mood'] }}</span>{% if context['location']['name'] | length > 0 %},{% else %}.{% endif %}
+                {% endif %}
+                {% if context['location']['name'] %}
+                    <span>{{ context['location']['description'] }}</span>.
+                {% endif %}
+                <br/>
+            {% endif %}
+
             Nous sommes
-            {{ context['dayOfWeek'] | title }}
-            {{ context['timeOfDay'] }},
+            <span>{{ context['dayOfWeek'] | title }}</span>
+            {% if context['timeOfDay'] == 'nuit' %}, c'est la{% endif %}
+            <span>{{ context['timeOfDay'] }}</span>,
             <br/>
-            et nous sommes en
-            {{ context['season'] }}.
+            et nous sommes
+            {% if context['season'] == 'printemps' %}au{% else %}en{% endif %}
+            <span>{{ context['season'] }}</span>.
         </p>
     </header>
 
@@ -25,20 +38,16 @@
         <p class="app-text">
             Choisissez votre
             <strong>lieu actuel</strong>, si vous souhaitez que cette préférence soit prise en compte dans les suggestions.
+            Vous pouvez bien sûr <a href="{{ path('app_settings_location_edit') }}">modifier vos lieux préférés</a>.
         </p>
 
         <div class="locations">
-            {% for location in app_locationService.locations %}
-                <a href="{{ path('app_settings_location', {'slug': location.slug}) }}" class="{% if app.user.location != location %}inactive{% endif %}" title="{{ location.description }}">
+            {% for location in app.user.locations %}
+                <a href="{{ path('app_settings_location_define', {'slug': location.slug}) }}" class="{% if app.user.location != location %}inactive{% endif %}" title="{{ location.description }}">
                     {{ ux_icon('mdi:location', {'class': 'app-icon'}) }}
                     {{ location.name }}
                 </a>
             {% endfor %}
-
-            <a href="#" class="add" title="Ajouter un lieu">
-                {{ ux_icon('gridicons:add', {'class': 'app-icon'}) }}
-                Nouveau
-            </a>
         </div>
 
         <p class="app-text">
