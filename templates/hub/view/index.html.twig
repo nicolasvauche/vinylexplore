@@ -7,7 +7,7 @@
 {% block main %}
     <header class="app-controls">
         <div class="app-search">
-            <a href="{{ path('app_hub_home') }}" class="filter" title="Retour">
+            <a href="javascript: history.go(-1);" class="filter" title="Retour">
                 {{ ux_icon('mdi:arrow-back-circle', {'class': 'app-icon'}) }}
             </a>
         </div>
@@ -37,7 +37,7 @@
                 <p class="card-title">
                     {{ album.title }}
                 </p>
-                <p class="card-title">
+                <p class="card-text">
                     {{ album.genre.name }}
                     {{ album.style.name }}
                     -

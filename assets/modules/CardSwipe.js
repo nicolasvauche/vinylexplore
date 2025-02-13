@@ -121,20 +121,15 @@ export default class CardSwipe {
             dy < 0 &&
             Math.abs(dx) <= this.threshold * this.container.offsetWidth
         ) {
-            if (!this.playOnly) {
-                if (this.feedback) {
-                    if (this.feedback.querySelector('#view')) {
-                        this.feedback.querySelector('#view').classList.add('active');
-                    }
+            if (this.feedback) {
+                if (this.feedback.querySelector('#view')) {
+                    this.feedback.querySelector('#view').classList.add('active');
                 }
-                this.action = 'view';
-                this.card.style.transform = `translateY(${dy}px)`;
-                this.card.classList.remove('swipe-right', 'swipe-left');
-                this.card.classList.add('swipe-up');
-            } else {
-                this.container.style.overflow = 'hidden';
-                this.card.style.transform = `none`;
             }
+            this.action = 'view';
+            this.card.style.transform = `translateY(${dy}px)`;
+            this.card.classList.remove('swipe-right', 'swipe-left');
+            this.card.classList.add('swipe-up');
         } else {
             if (this.feedback) {
                 if (this.feedback.querySelector('#view')) {
