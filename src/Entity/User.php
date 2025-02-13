@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Hub\Album;
 use App\Entity\Hub\Mood;
+use App\Entity\Settings\Location;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -55,6 +56,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\ManyToOne]
     private ?Mood $mood = null;
+
+    #[ORM\ManyToOne]
+    private ?Location $location = null;
 
     public function __construct()
     {
@@ -182,7 +186,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function addAlbum(Album $album): static
     {
-        if (!$this->albums->contains($album)) {
+        if(!$this->albums->contains($album)) {
             $this->albums->add($album);
             $album->setOwner($this);
         }
@@ -192,9 +196,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function removeAlbum(Album $album): static
     {
-        if ($this->albums->removeElement($album)) {
+        if($this->albums->removeElement($album)) {
             // set the owning side to null (unless already changed)
-            if ($album->getOwner() === $this) {
+            if($album->getOwner() === $this) {
                 $album->setOwner(null);
             }
         }
@@ -210,6 +214,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setMood(?Mood $mood): static
     {
         $this->mood = $mood;
+
+        return $this;
+    }
+
+    public function getLocation(): ?Location
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?Location $location): static
+    {
+        $this->location = $location;
 
         return $this;
     }

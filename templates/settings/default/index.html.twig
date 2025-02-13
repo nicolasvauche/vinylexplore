@@ -1,0 +1,58 @@
+{% extends '_layout/_index.html.twig' %}
+
+{% block title %}Vos Préférences{% endblock %}
+
+{% block body_class %}settings{% endblock %}
+
+{% block main %}
+    <header>
+        <h1>Vos Préférences</h1>
+    </header>
+
+    {% set context = app_contextService.context(app.user) %}
+    <header>
+        <p class="app-text nobg">
+            Nous sommes
+            {{ context['dayOfWeek'] | title }}
+            {{ context['timeOfDay'] }},
+            <br/>
+            et nous sommes en
+            {{ context['season'] }}.
+        </p>
+    </header>
+
+    <section class="app-section">
+        <p class="app-text">
+            Choisissez votre
+            <strong>lieu actuel</strong>, si vous souhaitez que cette préférence soit prise en compte dans les suggestions.
+        </p>
+
+        <div class="locations">
+            {% for location in app_locationService.locations %}
+                <a href="{{ path('app_settings_location', {'slug': location.slug}) }}" class="{% if app.user.location != location %}inactive{% endif %}" title="{{ location.description }}">
+                    {{ ux_icon('mdi:location', {'class': 'app-icon'}) }}
+                    {{ location.name }}
+                </a>
+            {% endfor %}
+
+            <a href="#" class="add" title="Ajouter un lieu">
+                {{ ux_icon('gridicons:add', {'class': 'app-icon'}) }}
+                Nouveau
+            </a>
+        </div>
+
+        <p class="app-text">
+            Choisissez votre
+            <strong>humeur</strong> du moment afin d'affiner les suggestions. Si vous n'en choisissez aucune, le mode
+            <strong>aléatoire</strong> sera activé et toute votre collection sera prise en compte.
+        </p>
+
+        <div class="moods">
+            {% for mood in app_moodService.moods %}
+                <a href="{{ path('app_settings_mood', {'slug': mood.slug}) }}" class="{% if app.user.mood != mood %}inactive{% endif %}" title="{{ mood.name }}">
+                    {{ ux_icon(mood.icon, {'class': 'app-icon'}) }}
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

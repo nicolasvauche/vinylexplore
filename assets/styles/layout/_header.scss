@@ -1,5 +1,5 @@
 .app-header {
-  @include displayGrid(3rem 1fr 3rem);
+  @include displayGrid(4.5rem 1fr 4.5rem);
   align-items: flex-start;
   box-sizing: border-box;
   padding: 0.5rem 0.5rem 0;
@@ -7,9 +7,11 @@
 
   a,
   span {
-    @include displayFlex(center, center, null, column);
+    @include displayFlex(center, center, 2px, column);
+    padding-bottom: 2px;
     font-size: 0.5rem;
     font-weight: bold;
+    line-height: 0.85rem;
     text-transform: uppercase;
     color: $primary;
 
@@ -18,11 +20,11 @@
     }
 
     .app-icon {
-      height: 2rem;
+      height: 2.5rem;
     }
 
     img {
-      height: 2rem;
+      height: 2.5rem;
     }
   }
 

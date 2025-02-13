@@ -1,11 +1,18 @@
 .app-settings {
   @include displayFlex(center, flex-start, 0.25rem);
 
-  .mood {
+  .settings {
+    @include displayFlex(center, center);
+    padding: 0.25rem;
     color: $third;
 
+    &.active {
+      color: $secondary;
+      border-color: $white;
+    }
+
     .app-icon {
-      height: 1.25rem;
+      height: 1rem;
     }
   }
 }

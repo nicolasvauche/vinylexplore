@@ -12,8 +12,6 @@
     border-radius: 0.5rem;
   }
 
-  border-radius: 0.5rem;
-
   .form-label {
     position: absolute;
     top: -0.75rem;
@@ -53,10 +51,6 @@
       color: $white;
       background-color: $secondary;
       border-color: $primary;
-    }
-
-    &::file-selector-button {
-      /*display: none;*/
     }
   }
 

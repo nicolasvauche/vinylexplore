@@ -4,11 +4,14 @@
             <a href="{{ path('app_profile') }}" class="profile {% if app.request.get('_route') == 'app_profile' %}active{% endif %}" title="Mon Compte">
                 {{ ux_icon('mdi:user', {'class': 'app-icon'}) }}
             </a>
-            <a href="{{ path('app_match_settings') }}" class="mood {% if app.request.get('_route') == 'app_match_settings' %}active{% endif %}" title="{{ app.user.mood ? app.user.mood.name : 'Mode aléatoire' }}">
+            <a href="{{ path('app_settings_home') }}" class="settings {% if 'app_settings_' in app.request.get('_route') %}active{% endif %}" title="Paramètres">
                 {% if app.user.mood %}
                     {{ ux_icon(app.user.mood.icon, {'class': 'app-icon'}) }}
                 {% else %}
                     {{ ux_icon('subway:random', {'class': 'app-icon'}) }}
+                {% endif %}
+                {% if app.user.location %}
+                    {{ ux_icon('mdi:location', {'class': 'app-icon'}) }}
                 {% endif %}
             </a>
         {% else %}

@@ -10,4 +10,13 @@
   background-color: rgba($secondary, 0.15);
   border: 2px solid $secondary;
   border-radius: 0.5rem;
+
+  &.nobg {
+    margin: 0;
+    font-weight: bold;
+    text-align: center;
+    color: $primary;
+    background-color: transparent;
+    border: none;
+  }
 }

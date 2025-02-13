@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Match;
+namespace App\Controller\Settings;
 
 use App\Entity\Hub\Mood;
 use App\Entity\User;
@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class MoodController extends AbstractController
 {
-    #[Route('/match/definir-humeur/{slug}', name: 'app_match_mood')]
+    #[Route('/parametres/humeur/{slug}', name: 'app_settings_mood')]
     public function index(EntityManagerInterface $entityManager,
                           Mood                   $mood): Response
     {
@@ -25,6 +25,6 @@ final class MoodController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
 
-        return $this->redirectToRoute('app_match_home', [], 301);
+        return $this->redirectToRoute('app_settings_home', [], 301);
     }
 }
