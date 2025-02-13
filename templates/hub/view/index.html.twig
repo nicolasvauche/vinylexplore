@@ -39,7 +39,9 @@
                 </p>
                 <p class="card-text">
                     {{ album.genre.name }}
-                    {{ album.style.name }}
+                    {% if album.style %}
+                        {{ album.style.name }}
+                    {% endif %}
                     -
                     {{ album.year }}
                     -

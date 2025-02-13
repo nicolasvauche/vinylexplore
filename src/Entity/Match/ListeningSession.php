@@ -88,7 +88,7 @@ class ListeningSession
 
     public function addListeningContext(ListeningContext $listeningContext): static
     {
-        if (!$this->listeningContexts->contains($listeningContext)) {
+        if(!$this->listeningContexts->contains($listeningContext)) {
             $this->listeningContexts->add($listeningContext);
             $listeningContext->setSession($this);
         }
@@ -98,9 +98,9 @@ class ListeningSession
 
     public function removeListeningContext(ListeningContext $listeningContext): static
     {
-        if ($this->listeningContexts->removeElement($listeningContext)) {
+        if($this->listeningContexts->removeElement($listeningContext)) {
             // set the owning side to null (unless already changed)
-            if ($listeningContext->getSession() === $this) {
+            if($listeningContext->getSession() === $this) {
                 $listeningContext->setSession(null);
             }
         }

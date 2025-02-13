@@ -21,8 +21,8 @@ readonly class AlbumPlayCountService
         return $this->listeningFrequencyRepository->findLastPlayedDate($album) ?? null;
     }
 
-    public function updateAlbumFrequency(Album $album): void
+    public function updateAlbumFrequency(Album $album, \DateTimeImmutable $now): void
     {
-        $this->listeningFrequencyRepository->updateAlbumFrequency($album);
+        $this->listeningFrequencyRepository->updateAlbumFrequency($album, $now);
     }
 }

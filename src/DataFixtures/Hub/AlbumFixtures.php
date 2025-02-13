@@ -15,7 +15,7 @@ class AlbumFixtures extends Fixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        for($i = 1; $i < 201; $i++) {
+        /*for($i = 1; $i < 11; $i++) {
             $album = new Album();
             $album->setTitle('Wish You Were Here-' . $i)
                 ->setCover('1-pink-floyd_wish-you-were-here.jpg')
@@ -28,7 +28,7 @@ class AlbumFixtures extends Fixture implements OrderedFixtureInterface
             $this->addReference('album-' . $i, $album);
         }
 
-        $manager->flush();
+        $manager->flush();*/
     }
 
     public function getOrder(): int

@@ -162,7 +162,7 @@ final class AddController extends AbstractController
 
             $this->addFlash('success', "L'album {$album->getTitle()} de {$album->getArtist()->getName()} a été ajouté à votre collection !");
 
-            return $this->redirectToRoute('app_hub_home', [], 301);
+            return $this->redirectToRoute('app_hub_view', ['slug' => $album->getSlug()], 301);
         }
 
         return $this->render('hub/add/index.html.twig', [

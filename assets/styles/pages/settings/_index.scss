@@ -15,14 +15,15 @@
           text-align: center;
           text-transform: uppercase;
           line-height: 1rem;
-          color: $third;
+          color: $secondary;
 
           .app-icon {
             height: 3rem;
           }
 
           &.inactive {
-            opacity: 0.25;
+            opacity: 0.5;
+            color: $third;
           }
         }
       }

@@ -4,27 +4,33 @@ namespace App\Service\Match;
 
 use App\Entity\Hub\Album;
 use App\Entity\User;
+use App\Repository\Hub\AlbumRepository;
 use App\Service\Hub\AlbumService;
 use App\Service\Match\Context\ContextService;
-use App\Service\Match\History\HistoryService;
 
 readonly class SuggestService
 {
-    public function __construct(private AlbumService   $albumService,
-                                private ContextService $contextService,
-                                private HistoryService $historyService)
+    public function __construct(private AlbumRepository $albumRepository,
+                                private AlbumService    $albumService,
+                                private ContextService  $contextService)
     {
     }
 
     public function suggest(User $user): Album
     {
+        $albums = $this->albumRepository->findAlbumsForUser($user);
         $context = $this->contextService->getContext($user);
-        $history = $this->historyService->getHistory($user);
+        $context['location'] = $context['location']['name'];
 
-        /*dd($context, $history);*/
+        $data = [
+            'context' => $context,
+            'albums' => $albums,
+        ];
+
+        dd($data);
 
         $albums = $this->albumService->getUserAlbums($user);
 
-        return $albums[0];
+        return $albums[array_rand($albums)];
     }
 }

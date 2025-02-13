@@ -29,6 +29,9 @@ class ListeningContext
     #[ORM\JoinColumn(nullable: false)]
     private ?ListeningSession $session = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $location = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class ListeningContext
     public function setSession(?ListeningSession $session): static
     {
         $this->session = $session;
+
+        return $this;
+    }
+
+    public function getLocation(): ?string
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?string $location): static
+    {
+        $this->location = $location;
 
         return $this;
     }

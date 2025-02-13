@@ -17,15 +17,17 @@ readonly class DecisionService
 
     public function saveDecision(Album $album, array $context, ?bool $played = false): void
     {
+        $now = new \DateTimeImmutable();
         $listeningSession = new ListeningSession();
         $listeningSession->setAlbum($album)
             ->setListened($played)
-            ->setChoiceAt(new \DateTimeImmutable());
+            ->setChoiceAt($now);
         $this->entityManager->persist($listeningSession);
 
         $listeningContext = new ListeningContext();
         $listeningContext->setSession($listeningSession)
             ->setMood(strtolower($context['mood']))
+            ->setLocation(strtolower($context['location']['name']))
             ->setSeason($context['season'])
             ->setDayOfWeek($context['dayOfWeek'])
             ->setTimeOfDay($context['timeOfDay']);
@@ -33,7 +35,7 @@ readonly class DecisionService
         $this->entityManager->flush();
 
         if($played) {
-            $this->albumPlayCountService->updateAlbumFrequency($album);
+            $this->albumPlayCountService->updateAlbumFrequency($album, $now);
         }
     }
 }

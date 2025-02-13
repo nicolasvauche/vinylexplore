@@ -42,7 +42,7 @@ class ListeningFrequencyRepository extends ServiceEntityRepository
         return $result ? $result['lastPlayedAt'] : null;
     }
 
-    public function updateAlbumFrequency(Album $album): void
+    public function updateAlbumFrequency(Album $album, \DateTimeImmutable $now): void
     {
         $entityManager = $this->getEntityManager();
 
@@ -52,10 +52,10 @@ class ListeningFrequencyRepository extends ServiceEntityRepository
             $listeningFrequency = new ListeningFrequency();
             $listeningFrequency->setAlbum($album);
             $listeningFrequency->setPlayCount(1);
-            $listeningFrequency->setLastPlayedAt(new \DateTimeImmutable());
+            $listeningFrequency->setLastPlayedAt($now);
         } else {
             $listeningFrequency->setPlayCount($listeningFrequency->getPlayCount() + 1);
-            $listeningFrequency->setLastPlayedAt(new \DateTimeImmutable());
+            $listeningFrequency->setLastPlayedAt($now);
         }
 
         $entityManager->persist($listeningFrequency);

@@ -12,6 +12,10 @@ readonly class ContextService
     {
     }
 
+    /**
+     * @throws \DateMalformedStringException
+     * @throws \DateInvalidTimeZoneException
+     */
     public function getContext(User $user): array
     {
         return [
