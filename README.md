@@ -53,7 +53,7 @@ Avant d'installer VinyleXplore, assurez-vous d'avoir les éléments suivants ins
 ### 1. Cloner le projet
 
 ```bash
-git clone https://github.com/votre-repo/vinylexplore.git
+git clone [url_du_referentiel]
 cd vinylexplore
 ```
 

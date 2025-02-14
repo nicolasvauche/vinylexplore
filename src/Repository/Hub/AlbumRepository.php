@@ -68,6 +68,8 @@ class AlbumRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('a')
             ->select(
                 'a.id',
+                'g.name as genre',
+                's.name as style',
                 'lf.playCount',
                 'lf.lastPlayedAt',
                 'LOWER(m.name) as mood',
@@ -79,6 +81,8 @@ class AlbumRepository extends ServiceEntityRepository
                 'ls.choiceAt'
             )
             ->leftJoin('a.moods', 'm')
+            ->leftJoin('a.genre', 'g')
+            ->leftJoin('a.style', 's')
             ->leftJoin('a.listeningFrequencies', 'lf')
             ->leftJoin('a.owner', 'o')
             ->leftJoin('a.listeningSessions', 'ls')
@@ -96,6 +100,8 @@ class AlbumRepository extends ServiceEntityRepository
                 $groupedResults[$albumId] = [
                     'id' => $albumId,
                     'moods' => !empty($result['mood']) ? [] : null,
+                    'genre' => $result['genre'],
+                    'style' => $result['style'],
                     'playCount' => $result['playCount'],
                     'lastPlayedAt' => $result['lastPlayedAt'] instanceof \DateTimeImmutable
                         ? $result['lastPlayedAt']->getTimestamp()

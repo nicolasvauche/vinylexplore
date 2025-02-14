@@ -45,7 +45,7 @@ class GenreFixtures extends Fixture implements OrderedFixtureInterface
                 'reference' => 'electro',
             ],
             [
-                'name' => "RN'B",
+                'name' => "R&B",
                 'reference' => 'rnb',
             ],
             [
