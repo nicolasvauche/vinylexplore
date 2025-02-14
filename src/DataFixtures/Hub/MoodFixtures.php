@@ -33,7 +33,7 @@ class MoodFixtures extends Fixture implements OrderedFixtureInterface
         $mood->setName('En soirée')
             ->setIcon('fa6-solid:champagne-glasses');
         $manager->persist($mood);
-        $this->addReference('mood-soiree', $mood);
+        $this->addReference('mood-en-soiree', $mood);
 
         $mood = new Mood();
         $mood->setName('Mélancolique')
@@ -52,6 +52,6 @@ class MoodFixtures extends Fixture implements OrderedFixtureInterface
 
     public function getOrder(): int
     {
-        return 7;
+        return 6;
     }
 }

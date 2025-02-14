@@ -15,21 +15,21 @@ class LocationFixtures extends Fixture implements OrderedFixtureInterface
         $location = new Location();
         $location->setName('Maison')
             ->setDescription('à la maison')
-            ->setOwner($this->getReference('user', User::class));
+            ->setOwner($this->getReference('user-nicolas', User::class));
         $manager->persist($location);
         $this->addReference('location-maison', $location);
 
         $location = new Location();
         $location->setName('Chérie')
             ->setDescription('chez votre chérie')
-            ->setOwner($this->getReference('user', User::class));
+            ->setOwner($this->getReference('user-nicolas', User::class));
         $manager->persist($location);
         $this->addReference('location-cherie', $location);
 
         $location = new Location();
         $location->setName('Travail')
             ->setDescription('au travail')
-            ->setOwner($this->getReference('user', User::class));
+            ->setOwner($this->getReference('user-nicolas', User::class));
         $manager->persist($location);
         $this->addReference('location-travail', $location);
 

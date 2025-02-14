@@ -14,7 +14,15 @@
             </div>
 
             <div class="card-body">
-                <p class="card-subtitle">{{ album.artist.name }}</p>
+                <div class="app-grid two">
+                    <p class="card-subtitle">{{ album.artist.name }}</p>
+                    <p class="card-subtitle">
+                        {{ album.genre.name }}
+                        {% if album.style %}
+                            {{ album.style.name }}
+                        {% endif %}
+                    </p>
+                </div>
                 <p class="card-title">{{ album.title }}</p>
             </div>
         </div>

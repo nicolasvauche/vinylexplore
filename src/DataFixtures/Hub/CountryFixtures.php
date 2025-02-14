@@ -11,10 +11,43 @@ class CountryFixtures extends Fixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        $country = new Country();
-        $country->setName('UK');
-        $manager->persist($country);
-        $this->addReference('country', $country);
+        $datas = [
+            [
+                'name' => 'UK',
+                'reference' => 'uk',
+            ],
+            [
+                'name' => 'US',
+                'reference' => 'us',
+            ],
+            [
+                'name' => 'Allemagne',
+                'reference' => 'allemagne',
+            ],
+            [
+                'name' => 'France',
+                'reference' => 'france',
+            ],
+            [
+                'name' => 'Australie',
+                'reference' => 'australie',
+            ],
+            [
+                'name' => 'Irlande',
+                'reference' => 'irlande',
+            ],
+            [
+                'name' => 'Canada',
+                'reference' => 'canada',
+            ],
+        ];
+
+        foreach($datas as $data) {
+            $country = (new Country())
+                ->setName($data['name']);
+            $manager->persist($country);
+            $this->addReference('country-' . $data['reference'], $country);
+        }
 
         $manager->flush();
     }

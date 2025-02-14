@@ -24,6 +24,16 @@
     padding: 0.25rem 0.5rem;
     width: 100%;
 
+    .app-grid {
+      &.two {
+        .card-subtitle {
+          &:last-child {
+            text-align: right;
+          }
+        }
+      }
+    }
+
     .card-title {
       margin-bottom: 0;
       font-size: 0.75rem;

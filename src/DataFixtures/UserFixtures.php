@@ -25,7 +25,7 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
             ->setName('Nicolas')
             ->setActive(true);
         $manager->persist($user);
-        $this->addReference('user', $user);
+        $this->addReference('user-nicolas', $user);
 
         $manager->flush();
     }

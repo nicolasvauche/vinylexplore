@@ -11,10 +11,55 @@ class GenreFixtures extends Fixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        $genre = new Genre();
-        $genre->setName('Rock');
-        $manager->persist($genre);
-        $this->addReference('genre', $genre);
+        $datas = [
+            [
+                'name' => 'Rock',
+                'reference' => 'rock',
+            ],
+            [
+                'name' => 'Hard Rock',
+                'reference' => 'hard-rock',
+            ],
+            [
+                'name' => 'Métal',
+                'reference' => 'metal',
+            ],
+            [
+                'name' => 'Punk',
+                'reference' => 'punk',
+            ],
+            [
+                'name' => 'Soul',
+                'reference' => 'soul',
+            ],
+            [
+                'name' => 'Grunge',
+                'reference' => 'grunge',
+            ],
+            [
+                'name' => 'Country',
+                'reference' => 'country',
+            ],
+            [
+                'name' => 'Électro',
+                'reference' => 'electro',
+            ],
+            [
+                'name' => "RN'B",
+                'reference' => 'rnb',
+            ],
+            [
+                'name' => 'Indie',
+                'reference' => 'indie',
+            ],
+        ];
+
+        foreach($datas as $data) {
+            $genre = (new Genre())
+                ->setName($data['name']);
+            $manager->persist($genre);
+            $this->addReference('genre-' . $data['reference'], $genre);
+        }
 
         $manager->flush();
     }
