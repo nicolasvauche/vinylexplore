@@ -2,10 +2,8 @@
 
 namespace App\Service\Match;
 
-use App\Entity\Hub\Album;
 use App\Entity\User;
 use App\Repository\Hub\AlbumRepository;
-use App\Service\Hub\AlbumService;
 use App\Service\Match\Context\ContextService;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
@@ -17,9 +15,9 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 readonly class SuggestService
 {
     public function __construct(private AlbumRepository     $albumRepository,
-                                private AlbumService        $albumService,
                                 private ContextService      $contextService,
-                                private HttpClientInterface $client)
+                                private HttpClientInterface $client,
+                                private string              $apiKey)
     {
     }
 
@@ -43,8 +41,6 @@ readonly class SuggestService
             'albums' => $albums,
         ];
 
-        /*dd(json_encode($data));*/
-
         try {
             $response = $this->client->request(
                 'POST',
@@ -52,6 +48,9 @@ readonly class SuggestService
                 [
                     'json' => $data,
                     'timeout' => 5,
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $this->apiKey,
+                    ],
                 ]
             );
 
