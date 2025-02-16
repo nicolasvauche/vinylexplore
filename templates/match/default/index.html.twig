@@ -17,10 +17,10 @@
                 <div class="app-grid two">
                     <p class="card-subtitle">{{ album.artist.name }}</p>
                     <p class="card-subtitle">
-                        {{ album.genre.name }}
                         {% if album.style %}
                             {{ album.style.name }}
                         {% endif %}
+                        {{ album.genre.name }}
                     </p>
                 </div>
                 <p class="card-title">{{ album.title }}</p>

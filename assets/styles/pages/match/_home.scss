@@ -1,6 +1,7 @@
 &.home {
   .app-section {
     .app-card {
+      width: 100%;
       transition: transform 0.9s;
       cursor: grab;
       user-select: none;

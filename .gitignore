@@ -5,6 +5,8 @@ vinylexplorenew.crt
 vinylexplorenew.key
 public/uploads/album/*
 !public/uploads/album/.gitkeep
+src/DataFixtures/*
+!src/DataFixtures/.gitkeep
 ###< vinylexplore/local-development ###
 
 ###> symfony/framework-bundle ###

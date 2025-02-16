@@ -10,7 +10,6 @@
     & > .app-grid {
       flex: 1;
       grid-template-rows: repeat(3, 1fr);
-      align-items: flex-start;
     }
   }
 }
